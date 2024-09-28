@@ -12,6 +12,7 @@ class LoginView: UIView {
     super.init(frame: frame)
     self.backgroundColor = .white
     self.addComponents()
+    self.autoLayoutSetup()
     self.setupConstraints()
   }
   
@@ -81,12 +82,88 @@ class LoginView: UIView {
   let loginBtn: UIButton = {
     let button = UIButton()
     
+    // ios 15부터는 configuration을 통해 버튼 속성 정의
     var config = UIButton.Configuration.filled()
-    config.title = "로그인"
+    config.attributedTitle = AttributedString(
+      "로그인",
+      attributes: AttributeContainer([
+        .foregroundColor: UIColor.white,
+        .font: UIFont.systemFont(ofSize: 14, weight: .bold)
+      ])
+    )
     config.baseBackgroundColor = .systemBlue
-    config.baseForegroundColor = .white
     config.titleAlignment = .center
     config.background.cornerRadius = 8
+    
+    button.configuration = config
+    
+    return button
+  }()
+  
+  let kakaoLoginBtn: UIButton = {
+    let button = UIButton()
+    var config = UIButton.Configuration.filled()
+    
+    if let logoImage = UIImage(named: "KakaoLogin") {
+      config.image = logoImage
+      config.imagePlacement = .leading
+      config.imagePadding = 69
+      // 콘텐트 위치 세밀하게 조정
+      config.contentInsets = NSDirectionalEdgeInsets(
+        top: 0,
+        leading: 17,
+        bottom: 0,
+        trailing: 100
+      )
+    }
+    
+    // 텍스트 세밀하게 조절
+    config.attributedTitle = AttributedString(
+      "카카오로 로그인",
+      attributes: AttributeContainer([
+        .foregroundColor: UIColor.black,
+        .font: UIFont.boldSystemFont(ofSize: 13),
+      ])
+    )
+    config.titleAlignment = .center
+    config.baseBackgroundColor = .white
+    config.background.cornerRadius = 10
+    config.background.strokeColor = .gray
+    config.background.strokeWidth = 1
+    
+    button.configuration = config
+    
+    return button
+  }()
+  
+  let appleLoginBtn: UIButton = {
+    let button = UIButton()
+    var config = UIButton.Configuration.filled()
+    
+    if let logoImage = UIImage(named: "AppleLogin") {
+      config.image = logoImage
+      config.imagePlacement = .leading
+      config.imagePadding = 69
+      config.contentInsets = NSDirectionalEdgeInsets(
+        top: 0,
+        leading: 17,
+        bottom: 0,
+        trailing: 100
+      )
+    }
+    
+    config.attributedTitle = AttributedString(
+      "Apple로 로그인",
+      attributes: AttributeContainer([
+        .foregroundColor: UIColor.black,
+        .font: UIFont.boldSystemFont(ofSize: 13),
+      ])
+    )
+    config.titleAlignment = .center
+    config.baseBackgroundColor = .white
+    config.background.cornerRadius = 10
+    config.background.strokeColor = .gray
+    config.background.strokeWidth = 1
     
     button.configuration = config
     
@@ -102,15 +179,22 @@ extension LoginView {
     self.addSubview(pwdLabel)
     self.addSubview(pwdField)
     self.addSubview(loginBtn)
+    self.addSubview(kakaoLoginBtn)
+    self.addSubview(appleLoginBtn)
   }
   
-  private func setupConstraints() {
+  private func autoLayoutSetup() {
     kreamImgLogo.translatesAutoresizingMaskIntoConstraints = false
     loginField.translatesAutoresizingMaskIntoConstraints = false
     loginLabel.translatesAutoresizingMaskIntoConstraints = false
     pwdField.translatesAutoresizingMaskIntoConstraints = false
     pwdLabel.translatesAutoresizingMaskIntoConstraints = false
     loginBtn.translatesAutoresizingMaskIntoConstraints = false
+    kakaoLoginBtn.translatesAutoresizingMaskIntoConstraints = false
+    appleLoginBtn.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  private func setupConstraints() {
     
     NSLayoutConstraint.activate([
       kreamImgLogo.topAnchor.constraint(
@@ -169,6 +253,22 @@ extension LoginView {
       loginBtn.leadingAnchor.constraint(equalTo: pwdField.leadingAnchor),
       loginBtn.trailingAnchor.constraint(equalTo: pwdField.trailingAnchor),
       loginBtn.heightAnchor.constraint(equalToConstant: 38),
+      
+      kakaoLoginBtn.topAnchor.constraint(
+        equalTo: loginBtn.bottomAnchor,
+        constant: 87
+      ),
+      kakaoLoginBtn.leadingAnchor.constraint(equalTo: loginBtn.leadingAnchor),
+      kakaoLoginBtn.trailingAnchor.constraint(equalTo: loginBtn.trailingAnchor),
+      kakaoLoginBtn.heightAnchor.constraint(equalToConstant: 40),
+      
+      appleLoginBtn.topAnchor.constraint(
+        equalTo: kakaoLoginBtn.bottomAnchor,
+        constant: 22
+      ),
+      appleLoginBtn.leadingAnchor.constraint(equalTo: kakaoLoginBtn.leadingAnchor),
+      appleLoginBtn.trailingAnchor.constraint(equalTo: kakaoLoginBtn.trailingAnchor),
+      appleLoginBtn.heightAnchor.constraint(equalToConstant: 40),
     ])
   }
 }
