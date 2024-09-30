@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  week2
+//  Week2
 //
-//  Created by jaewon Lee on 9/30/24.
+//  Created by jaewon Lee on 9/26/24.
 //
 
 import UIKit

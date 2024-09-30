@@ -6,59 +6,54 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		0E94787D2CAA7DCC00E1AB88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E94787C2CAA7DCC00E1AB88 /* SnapKit */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		0E94785A2CAA7A4800E1AB88 /* week2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = week2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ECEFF922CA5800800CC793B /* Week2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Week2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E94786C2CAA7A4900E1AB88 /* Exceptions for "week2" folder in "week2" target */ = {
+		0ECEFFA42CA5800900CC793B /* Exceptions for "Week2" folder in "Week2" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 0E9478592CAA7A4800E1AB88 /* week2 */;
+			target = 0ECEFF912CA5800800CC793B /* Week2 */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0E94785C2CAA7A4800E1AB88 /* week2 */ = {
+		0ECEFF942CA5800800CC793B /* Week2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				0E94786C2CAA7A4900E1AB88 /* Exceptions for "week2" folder in "week2" target */,
+				0ECEFFA42CA5800900CC793B /* Exceptions for "Week2" folder in "Week2" target */,
 			);
-			path = week2;
+			path = Week2;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0E9478572CAA7A4800E1AB88 /* Frameworks */ = {
+		0ECEFF8F2CA5800800CC793B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E94787D2CAA7DCC00E1AB88 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E9478512CAA7A4800E1AB88 = {
+		0ECEFF892CA5800800CC793B = {
 			isa = PBXGroup;
 			children = (
-				0E94785C2CAA7A4800E1AB88 /* week2 */,
-				0E94785B2CAA7A4800E1AB88 /* Products */,
+				0ECEFF942CA5800800CC793B /* Week2 */,
+				0ECEFF932CA5800800CC793B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0E94785B2CAA7A4800E1AB88 /* Products */ = {
+		0ECEFF932CA5800800CC793B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0E94785A2CAA7A4800E1AB88 /* week2.app */,
+				0ECEFF922CA5800800CC793B /* Week2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,68 +61,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0E9478592CAA7A4800E1AB88 /* week2 */ = {
+		0ECEFF912CA5800800CC793B /* Week2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0E94786D2CAA7A4900E1AB88 /* Build configuration list for PBXNativeTarget "week2" */;
+			buildConfigurationList = 0ECEFFA52CA5800900CC793B /* Build configuration list for PBXNativeTarget "Week2" */;
 			buildPhases = (
-				0E9478562CAA7A4800E1AB88 /* Sources */,
-				0E9478572CAA7A4800E1AB88 /* Frameworks */,
-				0E9478582CAA7A4800E1AB88 /* Resources */,
+				0ECEFF8E2CA5800800CC793B /* Sources */,
+				0ECEFF8F2CA5800800CC793B /* Frameworks */,
+				0ECEFF902CA5800800CC793B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0E94785C2CAA7A4800E1AB88 /* week2 */,
+				0ECEFF942CA5800800CC793B /* Week2 */,
 			);
-			name = week2;
+			name = Week2;
 			packageProductDependencies = (
-				0E94787C2CAA7DCC00E1AB88 /* SnapKit */,
 			);
-			productName = week2;
-			productReference = 0E94785A2CAA7A4800E1AB88 /* week2.app */;
+			productName = Week2;
+			productReference = 0ECEFF922CA5800800CC793B /* Week2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0E9478522CAA7A4800E1AB88 /* Project object */ = {
+		0ECEFF8A2CA5800800CC793B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					0E9478592CAA7A4800E1AB88 = {
+					0ECEFF912CA5800800CC793B = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
-			buildConfigurationList = 0E9478552CAA7A4800E1AB88 /* Build configuration list for PBXProject "week2" */;
+			buildConfigurationList = 0ECEFF8D2CA5800800CC793B /* Build configuration list for PBXProject "Week2" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 0E9478512CAA7A4800E1AB88;
+			mainGroup = 0ECEFF892CA5800800CC793B;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				0E94787B2CAA7DCC00E1AB88 /* XCRemoteSwiftPackageReference "SnapKit" */,
-			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 0E94785B2CAA7A4800E1AB88 /* Products */;
+			productRefGroup = 0ECEFF932CA5800800CC793B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0E9478592CAA7A4800E1AB88 /* week2 */,
+				0ECEFF912CA5800800CC793B /* Week2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0E9478582CAA7A4800E1AB88 /* Resources */ = {
+		0ECEFF902CA5800800CC793B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,7 +128,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0E9478562CAA7A4800E1AB88 /* Sources */ = {
+		0ECEFF8E2CA5800800CC793B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -147,7 +138,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0E94786E2CAA7A4900E1AB88 /* Debug */ = {
+		0ECEFFA62CA5800900CC793B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -156,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6H8Y6F23HB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = week2/Info.plist;
+				INFOPLIST_FILE = Week2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -166,7 +157,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "umc-ios.week2";
+				PRODUCT_BUNDLE_IDENTIFIER = "umc-ios.Week2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -174,7 +165,7 @@
 			};
 			name = Debug;
 		};
-		0E94786F2CAA7A4900E1AB88 /* Release */ = {
+		0ECEFFA72CA5800900CC793B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -183,7 +174,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6H8Y6F23HB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = week2/Info.plist;
+				INFOPLIST_FILE = Week2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -193,7 +184,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "umc-ios.week2";
+				PRODUCT_BUNDLE_IDENTIFIER = "umc-ios.Week2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -201,7 +192,7 @@
 			};
 			name = Release;
 		};
-		0E9478702CAA7A4900E1AB88 /* Debug */ = {
+		0ECEFFA82CA5800900CC793B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -264,7 +255,7 @@
 			};
 			name = Debug;
 		};
-		0E9478712CAA7A4900E1AB88 /* Release */ = {
+		0ECEFFA92CA5800900CC793B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -323,44 +314,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E9478552CAA7A4800E1AB88 /* Build configuration list for PBXProject "week2" */ = {
+		0ECEFF8D2CA5800800CC793B /* Build configuration list for PBXProject "Week2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E9478702CAA7A4900E1AB88 /* Debug */,
-				0E9478712CAA7A4900E1AB88 /* Release */,
+				0ECEFFA82CA5800900CC793B /* Debug */,
+				0ECEFFA92CA5800900CC793B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0E94786D2CAA7A4900E1AB88 /* Build configuration list for PBXNativeTarget "week2" */ = {
+		0ECEFFA52CA5800900CC793B /* Build configuration list for PBXNativeTarget "Week2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E94786E2CAA7A4900E1AB88 /* Debug */,
-				0E94786F2CAA7A4900E1AB88 /* Release */,
+				0ECEFFA62CA5800900CC793B /* Debug */,
+				0ECEFFA72CA5800900CC793B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0E94787B2CAA7DCC00E1AB88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0E94787C2CAA7DCC00E1AB88 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E94787B2CAA7DCC00E1AB88 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 0E9478522CAA7A4800E1AB88 /* Project object */;
+	rootObject = 0ECEFF8A2CA5800800CC793B /* Project object */;
 }
