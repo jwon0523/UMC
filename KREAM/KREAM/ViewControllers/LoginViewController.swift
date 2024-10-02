@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
   var loginData: [LoginModel] = [
-    LoginModel(id: "jwlee010523@gmail.com", pwd: "1234"),
+    LoginModel(id: "1234", pwd: "1234"),
     LoginModel(id: "1", pwd: "1111"),
     LoginModel(id: "2", pwd: "1111"),
     LoginModel(id: "3", pwd: "1111"),
@@ -44,7 +44,8 @@ class LoginViewController: UIViewController {
     if loginData.first(
       where: { $0.id == loginId && $0.pwd == loginPwd }
     ) != nil {
-      showAlert(title: "로그인 성공", message: "환영합니다!")
+//      showAlert(title: "로그인 성공", message: "환영합니다!")
+      navigationController?.pushViewController(TabBarMainViewController(), animated: true)
     } else {
       showAlert(
         title: "Error",
