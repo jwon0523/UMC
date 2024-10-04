@@ -7,12 +7,10 @@
 
 import UIKit
 
-class MyProfileView: UIViewController {
+class MyProfileViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .yellow
-    
-    // Do any additional setup after loading the view.
+    self.view = MyProfileView()
   }
 }

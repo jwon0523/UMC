@@ -1,5 +1,5 @@
 //
-//  StyleView.swift
+//  SaveView.swift
 //  KREAM
 //
 //  Created by jaewon Lee on 10/2/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class StyleView: UIViewController {
+class SaveViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = .green
     
     // Do any additional setup after loading the view.
   }

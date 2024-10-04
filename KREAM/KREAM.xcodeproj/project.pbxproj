@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E765FC12CAEBA9000311B46 /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0ECEFFBC2CA582B500CC793B /* KREAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KREAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = KREAM;
 			packageProductDependencies = (
+				0E765FC12CAEBA9000311B46 /* SnapKit */,
 			);
 			productName = KREAM;
 			productReference = 0ECEFFBC2CA582B500CC793B /* KREAM.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 0ECEFFB32CA582B500CC793B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0E765FC02CAEBA9000311B46 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0ECEFFBD2CA582B500CC793B /* Products */;
 			projectDirPath = "";
@@ -333,6 +342,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E765FC02CAEBA9000311B46 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E765FC12CAEBA9000311B46 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E765FC02CAEBA9000311B46 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0ECEFFB42CA582B500CC793B /* Project object */;
 }
