@@ -45,7 +45,9 @@ class LoginViewController: UIViewController {
       where: { $0.id == loginId && $0.pwd == loginPwd }
     ) != nil {
 //      showAlert(title: "로그인 성공", message: "환영합니다!")
-      navigationController?.pushViewController(TabBarMainViewController(), animated: true)
+      lazy var tabBarMainViewController = TabBarMainViewController()
+      tabBarMainViewController.modalPresentationStyle = .fullScreen
+      present(tabBarMainViewController, animated: true)
     } else {
       showAlert(
         title: "Error",

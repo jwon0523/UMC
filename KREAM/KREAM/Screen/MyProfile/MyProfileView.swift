@@ -104,7 +104,7 @@ private extension MyProfileView {
     
     headerView.snp.makeConstraints {
       // SafeArea를 기준으로 작성
-      $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(30)
+      $0.top.equalTo(safeAreaLayoutGuide.snp.top)
       $0.leading.trailing.equalToSuperview()
       $0.width.equalToSuperview()
       $0.height.equalTo(25)
@@ -150,7 +150,7 @@ private extension MyProfileView {
     }
     
     profileImage.snp.makeConstraints {
-      $0.trailing.equalToSuperview().inset(131)
+      $0.leading.equalToSuperview()
       $0.centerY.equalToSuperview()
       $0.height.width.equalTo(90)
     }

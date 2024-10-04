@@ -12,8 +12,9 @@ class TabBarMainViewController: UITabBarController {
   private let styleViewController = StyleViewController()
   private let searchViewController = SearchViewController()
   private let saveViewController = SaveViewController()
-  private let myProfileViewController = MyProfileViewController()
-  let navigationVC = UINavigationController(rootViewController: MyProfileViewController())
+  // 모달 전환은 네비게이션 스택을 포함하지 않기 때문에 UINavigationController로 감싸줘야 함.
+  private let myProfileViewController = UINavigationController(
+    rootViewController: MyProfileViewController())
   
   override func viewDidLoad() {
     super.viewDidLoad()

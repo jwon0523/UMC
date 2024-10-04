@@ -148,7 +148,7 @@ class LoginView: UIView {
         top: 0,
         leading: 17,
         bottom: 0,
-        trailing: 100
+        trailing: 93
       )
     }
     
@@ -269,6 +269,7 @@ extension LoginView {
       appleLoginBtn.leadingAnchor.constraint(equalTo: kakaoLoginBtn.leadingAnchor),
       appleLoginBtn.trailingAnchor.constraint(equalTo: kakaoLoginBtn.trailingAnchor),
       appleLoginBtn.heightAnchor.constraint(equalToConstant: 40),
+      appleLoginBtn.widthAnchor.constraint(equalToConstant: 298)
     ])
   }
 }

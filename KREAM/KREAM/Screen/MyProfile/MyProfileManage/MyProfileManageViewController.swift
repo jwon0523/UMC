@@ -19,7 +19,12 @@ class MyProfileManageViewController: UIViewController, UIGestureRecognizerDelega
 
 private extension MyProfileManageViewController {
   func customBackButton() {
-    let customBackButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+    let customBackButton = UIBarButtonItem(
+      image: UIImage(systemName: "arrow.backward"),
+      style: .plain,
+      target: self,
+      action: #selector(backButtonTapped)
+    )
     customBackButton.tintColor = .black
     navigationItem.hidesBackButton = true
     navigationItem.leftBarButtonItem = customBackButton

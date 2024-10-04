@@ -139,7 +139,7 @@ private extension MyProfileManageView {
     }
     
     loginLabel.snp.makeConstraints {
-      $0.top.equalTo(profileLabel.snp.bottom).offset(52)
+      $0.top.equalTo(profileLabel.snp.bottom).offset(23)
       $0.leading.equalToSuperview().offset(25)
       $0.trailing.equalToSuperview().offset(-25)
     }
