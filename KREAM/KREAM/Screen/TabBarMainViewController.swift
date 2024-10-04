@@ -13,6 +13,7 @@ class TabBarMainViewController: UITabBarController {
   private let searchViewController = SearchViewController()
   private let saveViewController = SaveViewController()
   private let myProfileViewController = MyProfileViewController()
+  let navigationVC = UINavigationController(rootViewController: MyProfileViewController())
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -16,9 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-//    let navigationViewController = UINavigationController(rootViewController: LoginViewController())
+    let navigationViewController = UINavigationController(
+      rootViewController: LoginViewController())
     // 원하는 뷰 컨트롤러 파일의 이름을 작성.
-    window?.rootViewController = MyProfileManageViewController()
+    window?.rootViewController = navigationViewController
     window?.makeKeyAndVisible()
   }
 

@@ -8,20 +8,26 @@
 import UIKit
 
 class MyProfileViewController: UIViewController {
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view = MyProfileView()
+    self.view = myProfileView
   }
   
   private lazy var myProfileView: MyProfileView = {
     let view = MyProfileView()
-    view.profileManageBtn.addTarget(self, action: #selector (profileManageBtnTapped), for: .touchUpInside)
+    view.profileManageBtn.addTarget(
+      self,
+      action: #selector (profileManageBtnTapped),
+      for: .touchUpInside
+    )
     return view
   }()
   
   @objc
   private func profileManageBtnTapped() {
-    
+    navigationController?.pushViewController(
+      MyProfileManageViewController(),
+      animated: true
+    )
   }
 }
