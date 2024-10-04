@@ -35,11 +35,7 @@ class MyProfileView: UIView {
     return btn
   }()
   
-  let profileView: UIView = {
-    let view = UIView()
-    
-    return view
-  }()
+  let profileView = UIView()
   
   let profileImage: UIImageView = {
     let img = UIImageView()

@@ -8,29 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E765FC12CAEBA9000311B46 /* SnapKit */; };
+		0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FC32CAFC0EF00311B46 /* LoginModel.swift */; };
+		0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */; };
+		0E765FE12CAFC0EF00311B46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FD22CAFC0EF00311B46 /* AppDelegate.swift */; };
+		0E765FE22CAFC0EF00311B46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FD52CAFC0EF00311B46 /* SceneDelegate.swift */; };
+		0E765FE32CAFC0EF00311B46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E765FD32CAFC0EF00311B46 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E765FC32CAFC0EF00311B46 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMainViewController.swift; sourceTree = "<group>"; };
+		0E765FD22CAFC0EF00311B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0E765FD32CAFC0EF00311B46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E765FD42CAFC0EF00311B46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E765FD52CAFC0EF00311B46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0ECEFFBC2CA582B500CC793B /* KREAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KREAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0ECEFFCE2CA582B700CC793B /* Exceptions for "KREAM" folder in "KREAM" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 0ECEFFBB2CA582B500CC793B /* KREAM */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0ECEFFBE2CA582B500CC793B /* KREAM */ = {
+		0E765FE62CAFC12A00311B46 /* MyProfile */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0ECEFFCE2CA582B700CC793B /* Exceptions for "KREAM" folder in "KREAM" target */,
-			);
-			path = KREAM;
+			path = MyProfile;
+			sourceTree = "<group>";
+		};
+		0E765FE72CAFC14B00311B46 /* Login */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0E765FE82CAFC1BF00311B46 /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0E765FE92CAFC1C700311B46 /* Save */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Save;
+			sourceTree = "<group>";
+		};
+		0E765FEA2CAFC1DF00311B46 /* Search */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0E765FEB2CAFC1E600311B46 /* Style */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Style;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -47,10 +70,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E765FC42CAFC0EF00311B46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0E765FD62CAFC0EF00311B46 /* KREAM */ = {
+			isa = PBXGroup;
+			children = (
+				0E765FE52CAFC10F00311B46 /* Screen */,
+				0E765FC42CAFC0EF00311B46 /* Models */,
+				0E765FD22CAFC0EF00311B46 /* AppDelegate.swift */,
+				0E765FD32CAFC0EF00311B46 /* Assets.xcassets */,
+				0E765FD42CAFC0EF00311B46 /* Info.plist */,
+				0E765FD52CAFC0EF00311B46 /* SceneDelegate.swift */,
+			);
+			path = KREAM;
+			sourceTree = "<group>";
+		};
+		0E765FE52CAFC10F00311B46 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				0E765FE72CAFC14B00311B46 /* Login */,
+				0E765FE82CAFC1BF00311B46 /* Home */,
+				0E765FEB2CAFC1E600311B46 /* Style */,
+				0E765FEA2CAFC1DF00311B46 /* Search */,
+				0E765FE92CAFC1C700311B46 /* Save */,
+				0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */,
+				0E765FE62CAFC12A00311B46 /* MyProfile */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
 		0ECEFFB32CA582B500CC793B = {
 			isa = PBXGroup;
 			children = (
-				0ECEFFBE2CA582B500CC793B /* KREAM */,
+				0E765FD62CAFC0EF00311B46 /* KREAM */,
 				0ECEFFBD2CA582B500CC793B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +137,12 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0ECEFFBE2CA582B500CC793B /* KREAM */,
+				0E765FE62CAFC12A00311B46 /* MyProfile */,
+				0E765FE72CAFC14B00311B46 /* Login */,
+				0E765FE82CAFC1BF00311B46 /* Home */,
+				0E765FE92CAFC1C700311B46 /* Save */,
+				0E765FEA2CAFC1DF00311B46 /* Search */,
+				0E765FEB2CAFC1E600311B46 /* Style */,
 			);
 			name = KREAM;
 			packageProductDependencies = (
@@ -131,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E765FE32CAFC0EF00311B46 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */,
+				0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */,
+				0E765FE12CAFC0EF00311B46 /* AppDelegate.swift in Sources */,
+				0E765FE22CAFC0EF00311B46 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
