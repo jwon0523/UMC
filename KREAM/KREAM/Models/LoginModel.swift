@@ -11,3 +11,16 @@ struct LoginModel {
   var id: String
   var pwd: String
 }
+
+class LoginUserDefaultsModel {
+  private let userDefault = UserDefaults.standard
+  private let userTextKey: String = "userLoginText"
+  
+  public func saveUserInfo(_ isLoginSuccess: Bool) {
+    userDefault.set(isLoginSuccess, forKey: userTextKey)
+  }
+  
+  public func loadUserLoginInfo() -> Bool? {
+    userDefault.bool(forKey: userTextKey)
+  }
+}

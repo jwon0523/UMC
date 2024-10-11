@@ -8,6 +8,9 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+  
+  private let loginUserDefaultsModel = LoginUserDefaultsModel()
+  
   var loginData: [LoginModel] = [
     LoginModel(id: "1234", pwd: "1234"),
     LoginModel(id: "1", pwd: "1111"),
@@ -40,14 +43,14 @@ class LoginViewController: UIViewController {
       )
       return
     }
+    
     // loginData에서 조건을 만족하는 첫번째 배열 찾음. 못 찾으면 nil 반환
     if loginData.first(
       where: { $0.id == loginId && $0.pwd == loginPwd }
     ) != nil {
 //      showAlert(title: "로그인 성공", message: "환영합니다!")
-      lazy var tabBarMainViewController = TabBarMainViewController()
-      tabBarMainViewController.modalPresentationStyle = .fullScreen
-      present(tabBarMainViewController, animated: true)
+      showTabBarMainViewController()
+      loginUserDefaultsModel.saveUserInfo(true)
     } else {
       showAlert(
         title: "Error",
@@ -64,6 +67,12 @@ class LoginViewController: UIViewController {
     )
     alert.addAction(UIAlertAction(title: "OK", style: .default))
     self.present(alert, animated: true)
+  }
+  
+  private func showTabBarMainViewController() {
+    lazy var tabBarMainViewController = TabBarMainViewController()
+    tabBarMainViewController.modalPresentationStyle = .fullScreen
+    present(tabBarMainViewController, animated: true)
   }
 }
 
