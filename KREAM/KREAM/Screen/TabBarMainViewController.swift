@@ -19,7 +19,7 @@ class TabBarMainViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    self.navigationItem.hidesBackButton = true
+    tabBarSetUp()
     tabBarSetup()
     self.viewControllers = [
       homeViewController,
@@ -28,6 +28,14 @@ class TabBarMainViewController: UITabBarController {
       savedViewController,
       myProfileViewController
     ]
+  }
+  
+  func tabBarSetUp() {
+    self.navigationItem.hidesBackButton = true
+    self.tabBar.barTintColor = .white
+    self.tabBar.layer.borderColor = UIColor.systemGray3.cgColor
+    self.tabBar.layer.borderWidth = 0.5
+    self.tabBar.isTranslucent = false
   }
 }
 
