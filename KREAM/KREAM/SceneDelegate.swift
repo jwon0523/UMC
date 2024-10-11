@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //    let navigationViewController = UINavigationController(
 //      rootViewController: LoginViewController())
     // 원하는 뷰 컨트롤러 파일의 이름을 작성.
-    window?.rootViewController = LoginViewController()
+    window?.rootViewController = SavedViewController()
     window?.makeKeyAndVisible()
   }
 

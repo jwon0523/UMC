@@ -11,7 +11,7 @@ class TabBarMainViewController: UITabBarController {
   private let homeViewController = HomeViewController()
   private let styleViewController = StyleViewController()
   private let searchViewController = SearchViewController()
-  private let saveViewController = SaveViewController()
+  private let savedViewController = SavedViewController()
   // 모달 전환은 네비게이션 스택을 포함하지 않기 때문에 UINavigationController로 감싸줘야 함.
   private let myProfileViewController = UINavigationController(
     rootViewController: MyProfileViewController())
@@ -25,7 +25,7 @@ class TabBarMainViewController: UITabBarController {
       homeViewController,
       styleViewController,
       searchViewController,
-      saveViewController,
+      savedViewController,
       myProfileViewController
     ]
   }
@@ -51,7 +51,7 @@ extension TabBarMainViewController {
       tag: 2
     )
     
-    saveViewController.tabBarItem = UITabBarItem(
+    savedViewController.tabBarItem = UITabBarItem(
       title: "Save",
       image: UIImage(named: "SaveIcon")?.withTintColor(.black),
       tag: 3
