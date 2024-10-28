@@ -8,6 +8,7 @@
 import UIKit
 
 class MyProfileManageViewController: UIViewController, UIGestureRecognizerDelegate {
+  public var profileImageName: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
