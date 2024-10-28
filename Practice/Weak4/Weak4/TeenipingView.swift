@@ -10,6 +10,17 @@ import Then
 import SnapKit
 
 class TeenipingView: UIView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    backgroundColor = .white
+    self.setupView()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   let segmentedControl = UISegmentedControl(items: ["티니핑", "not 티니핑"]).then {
     $0.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
     $0.setBackgroundImage(UIImage(), for: .selected, barMetrics: .default)
@@ -48,25 +59,15 @@ class TeenipingView: UIView {
     )
   }
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    
-    backgroundColor = .white
-    self.setupView()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   private let divideLine = UIView().then {
     $0.backgroundColor = .black
   }
   
-  private let emptyLabel = UILabel().then {
+  let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 24, weight: .medium)
     $0.textColor = .black
     $0.text = "횅~"
+    $0.isHidden = true
   }
   
   private func setupView() {
