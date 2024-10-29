@@ -75,9 +75,12 @@ class HomeView: UIView {
     $0.contentMode = .scaleToFill
   }
   
-  let subCategorySection = UICollectionView(
+  let subCategoryCollectionView = UICollectionView(
     frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout()
+    collectionViewLayout: UICollectionViewFlowLayout().then {
+      $0.estimatedItemSize = .init(width: 61, height: 81)
+      $0.minimumLineSpacing = 9
+    }
   ).then {
     $0.backgroundColor = .clear
     $0.register(
@@ -93,12 +96,13 @@ private extension HomeView {
      searchBar,
      categorySegmentedControl,
      featuredBanner,
-     subCategorySection
+     subCategoryCollectionView
     ].forEach { addSubview($0) }
     
     searchBarSection()
     categorySegment()
     featuredBannerSection()
+    subCategorySection()
   }
   
   func searchBarSection() {
@@ -126,6 +130,15 @@ private extension HomeView {
       $0.top.equalTo(categorySegmentedControl.snp.bottom)
       $0.horizontalEdges.equalToSuperview()
       $0.height.equalTo(336)
+    }
+  }
+  
+  func subCategorySection() {
+    subCategoryCollectionView.snp.makeConstraints {
+      $0.top.equalTo(featuredBanner.snp.bottom).offset(20)
+      $0.horizontalEdges.equalToSuperview().inset(16)
+      $0.centerX.equalToSuperview()
+      $0.height.equalTo(182)
     }
   }
   

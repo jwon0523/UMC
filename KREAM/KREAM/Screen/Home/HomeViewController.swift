@@ -18,23 +18,32 @@ class HomeViewController: UIViewController {
     setupDelegates()
   }
   
-  let homeView = HomeView()
+  private let homeView = HomeView()
   
   private func setupDelegates() {
-    homeView.subCategorySection.dataSource = self
+    homeView.subCategoryCollectionView.dataSource = self
   }
   
 }
 
 extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return HomeModel.dummy().count
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: HomeCollectionViewCell.identifier,
-      for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
+      for: indexPath
+    ) as? HomeCollectionViewCell else { return UICollectionViewCell() }
+    
+    let list = HomeModel.dummy()
+    
+    cell.imageView.image = list[indexPath.row].image
+    cell.titleLabel.text = list[indexPath.row].title
     
     return cell
   }
