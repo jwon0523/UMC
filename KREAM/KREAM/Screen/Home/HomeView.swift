@@ -25,6 +25,10 @@ class HomeView: UIView {
     $0.searchBarStyle = .minimal
   }
   
+  let alertBellView = UIImageView().then {
+    $0.image = UIImage(named: "alertBell")
+  }
+  
   let categorySegmentedControl = UISegmentedControl(
     items: ["추천", "랭킹", "발매정보", "럭셔리", "남성", "여성"]
   ).then {
@@ -88,30 +92,46 @@ class HomeView: UIView {
       forCellWithReuseIdentifier: HomeCollectionViewCell.identifier
     )
   }
+  
+  lazy var emptyLabel = UILabel().then {
+    $0.text = "No data"
+    $0.textColor = .lightGray
+    $0.font = .systemFont(ofSize: 16, weight: .light)
+    $0.isHidden = true
+  }
 }
 
 private extension HomeView {
   func setupView() {
     [
      searchBar,
+     alertBellView,
      categorySegmentedControl,
      featuredBanner,
-     subCategoryCollectionView
+     subCategoryCollectionView,
+     emptyLabel
     ].forEach { addSubview($0) }
     
     searchBarSection()
     categorySegment()
-    featuredBannerSection()
     subCategorySection()
   }
   
   func searchBarSection() {
+    //오토레이아웃의 제약조건과 너비가 충돌하면 width 제약이 무시될 수 있음.
     searchBar.snp.makeConstraints {
       $0.top.equalTo(safeAreaLayoutGuide).offset(6)
       $0.leading.equalToSuperview().offset(16)
-      $0.trailing.equalToSuperview().offset(-15)
+      $0.bottom.equalTo(categorySegmentedControl.snp.top).offset(-16)
       $0.height.equalTo(40)
       $0.width.equalTo(303)
+    }
+    
+    alertBellView.snp.makeConstraints {
+      $0.top.equalTo(safeAreaLayoutGuide).offset(14)
+      $0.leading.equalTo(searchBar.snp.trailing).offset(15)
+      $0.trailing.equalToSuperview().offset(-16)
+      $0.width.height.equalTo(24)
     }
   }
   
@@ -125,21 +145,22 @@ private extension HomeView {
     }
   }
   
-  func featuredBannerSection() {
-    featuredBanner.snp.makeConstraints {
-      $0.top.equalTo(categorySegmentedControl.snp.bottom)
-      $0.horizontalEdges.equalToSuperview()
-      $0.height.equalTo(336)
-    }
-  }
-  
   func subCategorySection() {
+    emptyLabel.snp.makeConstraints {
+      $0.centerX.centerY.equalToSuperview()
+    }
+    
     subCategoryCollectionView.snp.makeConstraints {
       $0.top.equalTo(featuredBanner.snp.bottom).offset(20)
       $0.horizontalEdges.equalToSuperview().inset(16)
       $0.centerX.equalToSuperview()
       $0.height.equalTo(182)
     }
+    
+    featuredBanner.snp.makeConstraints {
+      $0.top.equalTo(categorySegmentedControl.snp.bottom)
+      $0.horizontalEdges.equalToSuperview()
+      $0.height.equalTo(336)
+    }
   }
-  
 }

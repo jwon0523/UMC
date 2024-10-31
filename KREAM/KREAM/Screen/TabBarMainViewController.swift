@@ -8,7 +8,8 @@
 import UIKit
 
 class TabBarMainViewController: UITabBarController {
-  private let homeViewController = HomeViewController()
+  private let homeViewController = UINavigationController(
+    rootViewController: HomeViewController())
   private let styleViewController = StyleViewController()
   private let searchViewController = SearchViewController()
   private let savedViewController = SavedViewController()
