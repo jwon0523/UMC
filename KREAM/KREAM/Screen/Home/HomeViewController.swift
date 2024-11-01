@@ -94,6 +94,7 @@ extension HomeViewController: UISearchBarDelegate {
     let vc = UIViewController().then {
       $0.view.backgroundColor = .green
     }
+    searchBar.text = ""
     navigationController?.pushViewController(vc, animated: true)
   }
 }

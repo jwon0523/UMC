@@ -13,7 +13,7 @@ class HomeView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.setupView()
+    self.setupViews()
   }
 
   required init?(coder: NSCoder) {
@@ -99,22 +99,60 @@ class HomeView: UIView {
     $0.font = .systemFont(ofSize: 16, weight: .light)
     $0.isHidden = true
   }
+  
+  lazy var sectionStackView = UIStackView().then {
+    $0.axis = .vertical
+    $0.spacing = 14
+  }
+  
+  lazy var titleLabel: (String) -> UILabel = { title in
+      return UILabel().then {
+        $0.font = .systemFont(ofSize: 16, weight: .bold)
+        $0.text = title
+      }
+  }
+  
+  lazy var subTitleLabel: (String) -> UILabel = { subTitle in
+    return UILabel().then {
+      $0.font = .systemFont(ofSize: 13, weight: .medium)
+      $0.textColor = .lightGray
+      $0.text = subTitle
+    }
+  }
+  
+  lazy var shoppingCollectionView = UICollectionView(
+    frame: .zero,
+    collectionViewLayout: UICollectionViewFlowLayout()
+  ).then {
+    $0.backgroundColor = .clear
+    $0.register(
+      ShoppingCollectionViewCell.self,
+      forCellWithReuseIdentifier: ShoppingCollectionViewCell.identifier
+    )
+    $0.backgroundColor = .green
+  }
 }
 
 private extension HomeView {
-  func setupView() {
+  
+  func setupViews() {
     [
      searchBar,
      alertBellView,
      categorySegmentedControl,
      featuredBanner,
      subCategoryCollectionView,
-     emptyLabel
-    ].forEach { addSubview($0) }
+     emptyLabel,
+     sectionStackView,
+     shoppingCollectionView
+    ].forEach {
+      self.addSubview($0)
+    }
     
     searchBarSection()
     categorySegment()
     subCategorySection()
+    ShoppingSection()
   }
   
   func searchBarSection() {
@@ -161,6 +199,26 @@ private extension HomeView {
       $0.top.equalTo(categorySegmentedControl.snp.bottom)
       $0.horizontalEdges.equalToSuperview()
       $0.height.equalTo(336)
+    }
+  }
+  
+  func ShoppingSection() {
+    let shoppingSectionTitle = titleLabel("Just Dropped")
+    let shoppingSectionSubTitle = subTitleLabel("발매 상품")
+    
+    sectionStackView.addArrangedSubview(shoppingSectionTitle)
+    sectionStackView.addArrangedSubview(shoppingSectionSubTitle)
+    sectionStackView.addArrangedSubview(shoppingCollectionView)
+    
+    sectionStackView.snp.makeConstraints {
+      $0.top.equalTo(subCategoryCollectionView.snp.bottom).offset(30)
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalToSuperview()
+    }
+    
+    shoppingCollectionView.snp.makeConstraints {
+      $0.top.equalTo(shoppingSectionSubTitle.snp.bottom).offset(14)
+      $0.horizontalEdges.equalToSuperview().inset(16)
     }
   }
 }
