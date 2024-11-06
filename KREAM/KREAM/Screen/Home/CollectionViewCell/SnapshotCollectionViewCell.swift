@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShoppingCollectionViewCell: UICollectionViewCell {
+class SnapshotCollectionViewCell: UICollectionViewCell {
   static let identifier: String = "ShoppingCollectionViewCell"
   
   override init(frame: CGRect) {
@@ -61,7 +61,7 @@ class ShoppingCollectionViewCell: UICollectionViewCell {
 
 }
 
-private extension ShoppingCollectionViewCell {
+private extension SnapshotCollectionViewCell {
   func setupViews() {
     [imageView, labelStackView].forEach { self.addSubview($0) }
     

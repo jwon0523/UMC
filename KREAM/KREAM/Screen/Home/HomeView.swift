@@ -10,17 +10,31 @@ import Then
 import SnapKit
 
 class HomeView: UIView {
-
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.setupViews()
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  let searchBar = UISearchBar().then {
+  let homeStackView = UIStackView().then {
+    $0.axis = .vertical
+    $0.spacing = 10
+  }
+  
+  let scrollView = UIScrollView().then {
+    $0.showsHorizontalScrollIndicator = false
+  }
+  
+  let headerSectionView = UIStackView().then {
+    $0.axis = .horizontal
+    $0.spacing = 15
+  }
+  
+  let searchBarView = UISearchBar().then {
     $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
     $0.searchBarStyle = .minimal
   }
@@ -49,7 +63,7 @@ class HomeView: UIView {
     $0.setTitleTextAttributes(
       [
         NSAttributedString.Key.foregroundColor: UIColor.black,
-//        .backgroundColor: UIColor.clear,
+        //        .backgroundColor: UIColor.clear,
         .font: UIFont.systemFont(ofSize: 16, weight: .light),
         .paragraphStyle: {
           let paragraphStyle = NSMutableParagraphStyle()
@@ -62,7 +76,7 @@ class HomeView: UIView {
     $0.setTitleTextAttributes(
       [
         NSAttributedString.Key.foregroundColor: UIColor.black,
-//        .backgroundColor: UIColor.clear,
+        //        .backgroundColor: UIColor.clear,
         .font: UIFont.systemFont(ofSize: 16, weight: .bold),
         .paragraphStyle: {
           let paragraphStyle = NSMutableParagraphStyle()
@@ -100,16 +114,11 @@ class HomeView: UIView {
     $0.isHidden = true
   }
   
-  lazy var sectionStackView = UIStackView().then {
-    $0.axis = .vertical
-    $0.spacing = 14
-  }
-  
   lazy var titleLabel: (String) -> UILabel = { title in
-      return UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
-        $0.text = title
-      }
+    return UILabel().then {
+      $0.font = .systemFont(ofSize: 16, weight: .bold)
+      $0.text = title
+    }
   }
   
   lazy var subTitleLabel: (String) -> UILabel = { subTitle in
@@ -120,105 +129,151 @@ class HomeView: UIView {
     }
   }
   
-  lazy var shoppingCollectionView = UICollectionView(
+  lazy var justDroppedCollectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout()
   ).then {
     $0.backgroundColor = .clear
     $0.register(
-      ShoppingCollectionViewCell.self,
-      forCellWithReuseIdentifier: ShoppingCollectionViewCell.identifier
+      JustDroppedCollectionViewCell.self,
+      forCellWithReuseIdentifier: JustDroppedCollectionViewCell.identifier
+    )
+//    $0.backgroundColor = .yellow
+  }
+  
+  lazy var snapshotCollectionView = UICollectionView(
+    frame: .zero,
+    collectionViewLayout: UICollectionViewFlowLayout()
+  ).then {
+    $0.backgroundColor = .clear
+    $0.register(
+      SnapshotCollectionViewCell.self,
+      forCellWithReuseIdentifier: SnapshotCollectionViewCell.identifier
     )
     $0.backgroundColor = .green
   }
 }
 
 private extension HomeView {
-  
   func setupViews() {
     [
-     searchBar,
-     alertBellView,
-     categorySegmentedControl,
-     featuredBanner,
-     subCategoryCollectionView,
-     emptyLabel,
-     sectionStackView,
-     shoppingCollectionView
+      headerSectionView,
+      categorySegmentedControl,
+      scrollView,
+      emptyLabel
     ].forEach {
       self.addSubview($0)
     }
     
-    searchBarSection()
-    categorySegment()
-    subCategorySection()
-    ShoppingSection()
-  }
-  
-  func searchBarSection() {
-    //오토레이아웃의 제약조건과 너비가 충돌하면 width 제약이 무시될 수 있음.
-    searchBar.snp.makeConstraints {
+    headerSectionView.snp.makeConstraints {
       $0.top.equalTo(safeAreaLayoutGuide).offset(6)
-      $0.leading.equalToSuperview().offset(16)
-      $0.bottom.equalTo(categorySegmentedControl.snp.top).offset(-16)
+      $0.horizontalEdges.equalToSuperview().inset(16)
       $0.height.equalTo(40)
-      $0.width.equalTo(303)
     }
     
-    alertBellView.snp.makeConstraints {
-      $0.top.equalTo(safeAreaLayoutGuide).offset(14)
-      $0.leading.equalTo(searchBar.snp.trailing).offset(15)
-      $0.trailing.equalToSuperview().offset(-16)
-      $0.width.height.equalTo(24)
-    }
-  }
-  
-  func categorySegment() {
     categorySegmentedControl.snp.makeConstraints {
-      $0.top.equalTo(searchBar.snp.bottom).offset(16)
-      $0.centerX.equalToSuperview()
-      $0.leading.equalToSuperview().offset(24)
-      $0.trailing.equalToSuperview().offset(-25)
+      $0.top.equalTo(headerSectionView.snp.bottom).offset(16)
+      $0.horizontalEdges.equalToSuperview().inset(24)
       $0.height.equalTo(27)
     }
-  }
-  
-  func subCategorySection() {
-    emptyLabel.snp.makeConstraints {
-      $0.centerX.centerY.equalToSuperview()
+    
+    scrollView.snp.makeConstraints {
+      $0.top.equalTo(categorySegmentedControl.snp.bottom)
+      $0.horizontalEdges.bottom.equalToSuperview()
     }
     
-    subCategoryCollectionView.snp.makeConstraints {
-      $0.top.equalTo(featuredBanner.snp.bottom).offset(20)
-      $0.horizontalEdges.equalToSuperview().inset(16)
-      $0.centerX.equalToSuperview()
-      $0.height.equalTo(182)
+    scrollView.addSubview(homeStackView)
+    homeStackView.snp.makeConstraints {
+      $0.edges.equalTo(scrollView.contentLayoutGuide)
+      $0.width.equalTo(scrollView.snp.width)
+    }
+    
+    headerSectionView.addArrangedSubview(searchBarView)
+    headerSectionView.addArrangedSubview(alertBellView)
+    
+    alertBellView.snp.makeConstraints {
+      $0.height.width.equalTo(24)
+      $0.verticalEdges.equalToSuperview().inset(8)
+    }
+    
+    emptyLabel.snp.makeConstraints {
+      $0.center.equalToSuperview()
+    }
+    
+    setupStackView()
+  }
+  
+  func setupStackView() {
+    [
+      featuredBanner,
+      subCategoryCollectionView
+    ].forEach {
+      homeStackView.addArrangedSubview($0)
     }
     
     featuredBanner.snp.makeConstraints {
-      $0.top.equalTo(categorySegmentedControl.snp.bottom)
       $0.horizontalEdges.equalToSuperview()
       $0.height.equalTo(336)
     }
-  }
-  
-  func ShoppingSection() {
-    let shoppingSectionTitle = titleLabel("Just Dropped")
-    let shoppingSectionSubTitle = subTitleLabel("발매 상품")
     
-    sectionStackView.addArrangedSubview(shoppingSectionTitle)
-    sectionStackView.addArrangedSubview(shoppingSectionSubTitle)
-    sectionStackView.addArrangedSubview(shoppingCollectionView)
-    
-    sectionStackView.snp.makeConstraints {
-      $0.top.equalTo(subCategoryCollectionView.snp.bottom).offset(30)
-      $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalToSuperview()
+    subCategoryCollectionView.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview().inset(16)
+      $0.height.equalTo(182)
     }
     
-    shoppingCollectionView.snp.makeConstraints {
-      $0.top.equalTo(shoppingSectionSubTitle.snp.bottom).offset(14)
+    justDroppedSection()
+    snapshotSection()
+  }
+  
+  func justDroppedSection() {
+    let justDroppedSectionTitle = titleLabel("Just Dropped")
+    let justDroppedSectionSubTitle = subTitleLabel("발매 상품")
+    
+    [
+      justDroppedSectionTitle,
+      justDroppedSectionSubTitle,
+      justDroppedCollectionView
+    ].forEach {
+      homeStackView.addArrangedSubview($0)
+    }
+    
+    justDroppedSectionTitle.snp.makeConstraints {
       $0.horizontalEdges.equalToSuperview().inset(16)
+    }
+    
+    justDroppedSectionSubTitle.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview().inset(16)
+    }
+    
+    justDroppedCollectionView.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview()
+      $0.height.equalTo(237)
+    }
+  }
+  
+  func snapshotSection() {
+    let snapshotSectionTitle = titleLabel("본격 한파대비! 연말 필수템 모음")
+    let snapshotSectionSubTitle = subTitleLabel("#해피홀리룩챌린지")
+    
+    [
+      snapshotSectionTitle,
+      snapshotSectionSubTitle,
+      snapshotCollectionView
+    ].forEach {
+      homeStackView.addArrangedSubview($0)
+    }
+    
+    snapshotSectionTitle.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview().inset(16)
+    }
+    
+    snapshotSectionSubTitle.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview().inset(16)
+    }
+    
+    snapshotCollectionView.snp.makeConstraints {
+      $0.horizontalEdges.equalToSuperview()
+      $0.height.equalTo(237)
     }
   }
 }

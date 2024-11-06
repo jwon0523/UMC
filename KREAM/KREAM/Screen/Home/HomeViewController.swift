@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
   
   private func setupDelegates() {
     homeView.subCategoryCollectionView.dataSource = self
-    homeView.searchBar.delegate = self
+    homeView.searchBarView.delegate = self
   }
   
   private func setupAction() {
@@ -48,11 +48,10 @@ private extension HomeViewController {
   @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
-      homeView.featuredBanner.isHidden = false
-      homeView.subCategoryCollectionView.isHidden = false
+      homeView.scrollView.isHidden = false
+      homeView.emptyLabel.isHidden = true
     default:
-      homeView.featuredBanner.isHidden = true
-      homeView.subCategoryCollectionView.isHidden = true
+      homeView.scrollView.isHidden = true
       homeView.emptyLabel.isHidden = false
       break
     }
@@ -60,7 +59,10 @@ private extension HomeViewController {
 }
 
 extension HomeViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return HomeModel.dummy().count
   }
   
