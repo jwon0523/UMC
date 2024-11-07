@@ -26,64 +26,69 @@ class JustDroppedCollectionViewCell: UICollectionViewCell {
     $0.axis = .vertical
     $0.spacing = 3
     $0.alignment = .leading
-    $0.backgroundColor = .brown
   }
   
   lazy var imageView = UIImageView().then {
-    $0.image = UIImage(named: "justDropped1 1")
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = 12
     $0.clipsToBounds = true
-    $0.backgroundColor = .black
   }
   
-  lazy var titleLabel: (String, Double) -> UILabel = { title, size in
-      return UILabel().then {
-        $0.font = .systemFont(ofSize: size, weight: .bold)
-        $0.text = title
-      }
-  }
-  
-  lazy var subTitleLabel: (String, Double) -> UILabel = { subTitle, size in
-    return UILabel().then {
-      $0.font = .systemFont(ofSize: size, weight: .medium)
-      $0.textColor = .lightGray
-      $0.text = subTitle
-    }
-  }
+  lazy var titleLabel: UILabel = {
+      let label = UILabel()
+      label.font = .systemFont(ofSize: 12, weight: .bold)
+      label.textColor = .black
+      return label
+  }()
+
+  lazy var subTitleLabel: UILabel = {
+      let label = UILabel()
+      label.font = .systemFont(ofSize: 12, weight: .medium)
+      label.textColor = .lightGray
+      return label
+  }()
+
+  lazy var priceLabel: UILabel = {
+      let label = UILabel()
+      label.font = .systemFont(ofSize: 13, weight: .bold)
+      label.textColor = .black
+      return label
+  }()
+
+  lazy var priceStatusLabel: UILabel = {
+      let label = UILabel()
+      label.font = .systemFont(ofSize: 10, weight: .medium)
+      label.textColor = .lightGray
+      return label
+  }()
 }
 
 private extension JustDroppedCollectionViewCell {
   func setupViews() {
     self.addSubview(stackView)
+    self.setupStackView()
   }
   
   func setupStackView() {
-    let collectionTitle = titleLabel("MLB", 12)
-    let collectionSubTitle = subTitleLabel("청키라이너 뉴욕양키스", 12)
-    
-    let collectionPrice = titleLabel("139,000원", 13)
-    let collectionPriceStatus = subTitleLabel("즉시 구매가", 10)
-    
     [
      imageView,
-     collectionTitle,
-     collectionSubTitle,
-     collectionPrice,
-     collectionPriceStatus
+     titleLabel,
+     subTitleLabel,
+     priceLabel,
+     priceStatusLabel
     ].forEach {
       stackView.addArrangedSubview($0)
     }
     
     stackView.snp.makeConstraints {
       $0.top.horizontalEdges.equalToSuperview()
-      $0.width.equalTo(142)
-      $0.height.equalTo(237)
     }
     
     imageView.snp.makeConstraints {
-      $0.top.horizontalEdges.equalToSuperview()
       $0.height.width.equalTo(142)
     }
+    
+    // UIStackView에 뷰 간의 커스텀 간격 설성.
+    stackView.setCustomSpacing(26, after: subTitleLabel)
   }
 }

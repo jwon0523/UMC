@@ -14,7 +14,7 @@ struct HomeModel {
 }
 
 extension HomeModel {
-  static func dummy() -> [HomeModel] {
+  static func explorationCollectionData() -> [HomeModel] {
     return [
       HomeModel(image: .category1, title: "크림 드로우"),
       HomeModel(image: .category2, title: "실시간 차트"),

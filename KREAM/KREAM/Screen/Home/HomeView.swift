@@ -93,7 +93,7 @@ class HomeView: UIView {
     $0.contentMode = .scaleToFill
   }
   
-  let subCategoryCollectionView = UICollectionView(
+  let explorationCollectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout().then {
       $0.estimatedItemSize = .init(width: 61, height: 81)
@@ -131,14 +131,22 @@ class HomeView: UIView {
   
   lazy var justDroppedCollectionView = UICollectionView(
     frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout()
+    collectionViewLayout: UICollectionViewFlowLayout().then {
+      // 컬렉션 뷰의 크기 지정
+      $0.estimatedItemSize = .init(width: 142, height: 237)
+      // 가로 간격
+      $0.minimumInteritemSpacing = 8
+      $0.scrollDirection = .horizontal
+    }
   ).then {
     $0.backgroundColor = .clear
     $0.register(
       JustDroppedCollectionViewCell.self,
       forCellWithReuseIdentifier: JustDroppedCollectionViewCell.identifier
     )
-//    $0.backgroundColor = .yellow
+    $0.isPagingEnabled = true // 스크롤 부드럽게
+    $0.alwaysBounceVertical = false // 세로 스크롤 비활성화
+    $0.showsHorizontalScrollIndicator = false
   }
   
   lazy var snapshotCollectionView = UICollectionView(
@@ -206,7 +214,7 @@ private extension HomeView {
   func setupStackView() {
     [
       featuredBanner,
-      subCategoryCollectionView
+      explorationCollectionView
     ].forEach {
       homeStackView.addArrangedSubview($0)
     }
@@ -216,7 +224,7 @@ private extension HomeView {
       $0.height.equalTo(336)
     }
     
-    subCategoryCollectionView.snp.makeConstraints {
+    explorationCollectionView.snp.makeConstraints {
       $0.horizontalEdges.equalToSuperview().inset(16)
       $0.height.equalTo(182)
     }

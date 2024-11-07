@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E0246352CCFD1EA0077203D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0E0246342CCFD1EA0077203D /* Then */; };
-		0E02463A2CD110C20077203D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0246392CD110C20077203D /* HomeModel.swift */; };
 		0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E765FC12CAEBA9000311B46 /* SnapKit */; };
 		0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FC32CAFC0EF00311B46 /* LoginModel.swift */; };
 		0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */; };
@@ -19,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E0246392CD110C20077203D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		0E765FC32CAFC0EF00311B46 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMainViewController.swift; sourceTree = "<group>"; };
 		0E765FD22CAFC0EF00311B46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +29,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0E39C8DD2CDCE51C0075E86D /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Home;
+			sourceTree = "<group>";
+		};
 		0E765FE62CAFC12A00311B46 /* MyProfile */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MyProfile;
@@ -79,9 +82,9 @@
 		0E765FC42CAFC0EF00311B46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
 				0E76609F2CB905A300311B46 /* SavedModel.swift */,
-				0E0246392CD110C20077203D /* HomeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FE62CAFC12A00311B46 /* MyProfile */,
 				0E765FE72CAFC14B00311B46 /* Login */,
 				0E765FE82CAFC1BF00311B46 /* Home */,
@@ -215,7 +219,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E02463A2CD110C20077203D /* HomeModel.swift in Sources */,
 				0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */,
 				0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */,
 				0E765FE12CAFC0EF00311B46 /* AppDelegate.swift in Sources */,
