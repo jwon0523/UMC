@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
   private let homeView = HomeView()
   private let explorationCollectionViewHandler = ExplorationCollectionViewHandler()
   private let justDroppedCollectionViewHandler = JustDroppedCollectionViewHandler()
+  private let snapshotCollectionViewHandler = SnapshotCollectionViewHandler()
   
   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
@@ -35,6 +36,7 @@ class HomeViewController: UIViewController {
   private func setupDelegates() {
     homeView.explorationCollectionView.dataSource = explorationCollectionViewHandler
     homeView.justDroppedCollectionView.dataSource = justDroppedCollectionViewHandler
+    homeView.snapshotCollectionView.dataSource = snapshotCollectionViewHandler
     homeView.searchBarView.delegate = self
   }
   

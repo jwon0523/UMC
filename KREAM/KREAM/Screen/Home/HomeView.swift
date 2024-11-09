@@ -105,6 +105,7 @@ class HomeView: UIView {
       HomeCollectionViewCell.self,
       forCellWithReuseIdentifier: HomeCollectionViewCell.identifier
     )
+    $0.isScrollEnabled = false // 스크롤 비활성화
   }
   
   lazy var emptyLabel = UILabel().then {
@@ -132,8 +133,8 @@ class HomeView: UIView {
   lazy var justDroppedCollectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout().then {
-      // 컬렉션 뷰의 크기 지정
-      $0.estimatedItemSize = .init(width: 142, height: 237)
+      // 컬렉션 뷰의 크기 지정(동적 계산)
+      $0.itemSize = .init(width: 142, height: 237)
       // 가로 간격
       $0.minimumInteritemSpacing = 8
       $0.scrollDirection = .horizontal
@@ -144,21 +145,26 @@ class HomeView: UIView {
       JustDroppedCollectionViewCell.self,
       forCellWithReuseIdentifier: JustDroppedCollectionViewCell.identifier
     )
-    $0.isPagingEnabled = true // 스크롤 부드럽게
-    $0.alwaysBounceVertical = false // 세로 스크롤 비활성화
     $0.showsHorizontalScrollIndicator = false
   }
   
   lazy var snapshotCollectionView = UICollectionView(
     frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout()
+    collectionViewLayout: UICollectionViewFlowLayout().then {
+      // 컬렉션 뷰의 크기 지정
+      $0.itemSize = .init(width: 124, height: 165)
+      // 가로 간격
+      $0.minimumInteritemSpacing = 8
+      $0.scrollDirection = .horizontal
+    }
   ).then {
     $0.backgroundColor = .clear
     $0.register(
       SnapshotCollectionViewCell.self,
       forCellWithReuseIdentifier: SnapshotCollectionViewCell.identifier
     )
-    $0.backgroundColor = .green
+    $0.isPagingEnabled = true // 스크롤 부드럽게
+    $0.showsHorizontalScrollIndicator = false
   }
 }
 
@@ -179,6 +185,14 @@ private extension HomeView {
       $0.height.equalTo(40)
     }
     
+    headerSectionView.addArrangedSubview(searchBarView)
+    headerSectionView.addArrangedSubview(alertBellView)
+    
+    alertBellView.snp.makeConstraints {
+      $0.height.width.equalTo(24)
+      $0.verticalEdges.equalToSuperview().inset(8)
+    }
+    
     categorySegmentedControl.snp.makeConstraints {
       $0.top.equalTo(headerSectionView.snp.bottom).offset(16)
       $0.horizontalEdges.equalToSuperview().inset(24)
@@ -192,16 +206,10 @@ private extension HomeView {
     
     scrollView.addSubview(homeStackView)
     homeStackView.snp.makeConstraints {
-      $0.edges.equalTo(scrollView.contentLayoutGuide)
-      $0.width.equalTo(scrollView.snp.width)
-    }
-    
-    headerSectionView.addArrangedSubview(searchBarView)
-    headerSectionView.addArrangedSubview(alertBellView)
-    
-    alertBellView.snp.makeConstraints {
-      $0.height.width.equalTo(24)
-      $0.verticalEdges.equalToSuperview().inset(8)
+      // edges: 가장자리(top, leading, trailing, bottom)을 한번에 설정
+      // scrollView의 모든 가장자리에 위치 지정
+      $0.edges.equalTo(scrollView.contentLayoutGuide) // 스크롤 컨텐츠 영역에 맞게 설정
+      $0.width.equalTo(scrollView.frameLayoutGuide) // 스크롤 뷰의 프레임과 동일한 너비
     }
     
     emptyLabel.snp.makeConstraints {
@@ -226,6 +234,8 @@ private extension HomeView {
     
     explorationCollectionView.snp.makeConstraints {
       $0.horizontalEdges.equalToSuperview().inset(16)
+      // 컨텐츠의 크기와 컬렉션 뷰의 크기를 맞춤으로써 스크롤 기능x
+      // 컬렉션 뷰는 UIScrollView를 상속 받기 때문에 지정된 크기보다 초과될 경우 스크롤 됨.
       $0.height.equalTo(182)
     }
     
@@ -281,7 +291,7 @@ private extension HomeView {
     
     snapshotCollectionView.snp.makeConstraints {
       $0.horizontalEdges.equalToSuperview()
-      $0.height.equalTo(237)
+      $0.height.equalTo(165)
     }
   }
 }
