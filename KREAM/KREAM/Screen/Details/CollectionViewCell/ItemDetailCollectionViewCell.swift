@@ -26,8 +26,8 @@ class ItemDetailCollectionViewCell: UICollectionViewCell {
   private lazy var imageView = UIImageView()
 }
 
-private extension ItemDetailCollectionViewCell {
-  func setupConstraints() {
+extension ItemDetailCollectionViewCell {
+ private func setupConstraints() {
     self.addSubview(imageView)
     
     imageView.snp.makeConstraints {
@@ -35,8 +35,8 @@ private extension ItemDetailCollectionViewCell {
     }
   }
   
-  private func configure(model: RequiredCellProtocol) {
-    guard let purchaseItem = model as? ItemDetailModel else { return }
-    self.imageView.image = UIImage(named: purchaseItem.imageView)
+  public func configure(model: any RequiredCellProtocol) {
+    guard let itemDetailData = model as? ItemDetailModel else { return }
+    self.imageView.image = UIImage(named: itemDetailData.imageView)
   }
 }

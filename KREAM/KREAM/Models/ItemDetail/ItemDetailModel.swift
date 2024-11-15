@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemDetailModel {
+struct ItemDetailModel: RequiredCellProtocol {
   var imageView: String
   var productName: String
 }
