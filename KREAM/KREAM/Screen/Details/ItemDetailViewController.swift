@@ -8,12 +8,23 @@
 import UIKit
 import Then
 
-class ItemDetailViewController: UIViewController {
+class ItemDetailViewController: UIViewController, UIGestureRecognizerDelegate {
   
   let data = ItemDetailData.purchaseData
+  var image: UIImage?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.setupNavigationBar()
+    self.setDefaultSelection()
+    self.addTapGesture()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if let image = image {
+      self.itemDetailView.itemImageView.image = image
+    }
   }
   
   override func loadView() {
@@ -21,6 +32,11 @@ class ItemDetailViewController: UIViewController {
   }
   
   private lazy var itemDetailView = ItemDetailView().then {
+    if let image = image {
+      $0.itemImageView.image = image
+    } else {
+      print("Image is nil")
+    }
     $0.itemCollectionView.delegate = self
     $0.itemCollectionView.dataSource = self
   }
@@ -33,6 +49,8 @@ class ItemDetailViewController: UIViewController {
       action: #selector(handleBackButton)
     )
     self.navigationItem.leftBarButtonItem = item
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
   }
   
   private func addTapGesture() {
@@ -54,7 +72,7 @@ class ItemDetailViewController: UIViewController {
   }
   
   @objc private func handleBackButton() {
-    self.dismiss(animated: true, completion: nil)
+    self.navigationController?.popViewController(animated: true)
   }
   
   @objc private func buttonTapped() {

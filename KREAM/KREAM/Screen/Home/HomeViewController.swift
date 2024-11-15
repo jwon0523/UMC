@@ -37,7 +37,11 @@ class HomeViewController: UIViewController {
     homeView.explorationCollectionView.dataSource = explorationCollectionViewHandler
     homeView.justDroppedCollectionView.dataSource = justDroppedCollectionViewHandler
     homeView.snapshotCollectionView.dataSource = snapshotCollectionViewHandler
+    
     homeView.searchBarView.delegate = self
+    homeView.justDroppedCollectionView.delegate = justDroppedCollectionViewHandler
+    // 핸들러에 parentViewController 전달
+    justDroppedCollectionViewHandler.parentViewController = self
   }
   
   private func setupAction() {

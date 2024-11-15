@@ -7,7 +7,9 @@
 
 import UIKit
 
-class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource {
+class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+  weak var parentViewController: UIViewController?
+  
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -19,7 +21,6 @@ class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    // TODO: - justDroppedCollectionCell로 수정
     guard let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: JustDroppedCollectionViewCell.identifier,
       for: indexPath
@@ -34,5 +35,22 @@ class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource {
     cell.priceStatusLabel.text = list[indexPath.row].priceStatus
     
     return cell
+  }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    let itemDetailVC = ItemDetailViewController()
+    let list = JustDroppedCollectionModel.justDroppedCollectionData()
+    let selectedItem = list[indexPath.row]
+    itemDetailVC.image = selectedItem.image
+    
+    if let navigationController = parentViewController?.navigationController {
+      navigationController.pushViewController(itemDetailVC, animated: true)
+    } else {
+      let navController = UINavigationController(rootViewController: itemDetailVC)
+      parentViewController?.present(navController, animated: true)
+    }
   }
 }

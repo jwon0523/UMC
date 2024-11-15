@@ -128,8 +128,8 @@
 		0E765FE52CAFC10F00311B46 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				0E9099582CE22D9100AC4D96 /* Details */,
 				0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */,
+				0E9099582CE22D9100AC4D96 /* Details */,
 				0E765FE72CAFC14B00311B46 /* Login */,
 				0E765FE82CAFC1BF00311B46 /* Home */,
 				0E765FEB2CAFC1E600311B46 /* Style */,

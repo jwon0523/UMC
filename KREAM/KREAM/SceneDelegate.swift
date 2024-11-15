@@ -17,12 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
     
-//    let loginUserDefaultsModel = LoginUserDefaultsModel()
-////    loginUserDefaultsModel.saveUserInfo(false)
-//    guard let userInfo = loginUserDefaultsModel.loadUserLoginInfo() else { return }
-//    // 원하는 뷰 컨트롤러 파일의 이름을 작성.
-//    window?.rootViewController = userInfo ? TabBarMainViewController() : LoginViewController()
-    window?.rootViewController = ItemDetailViewController()
+    let loginUserDefaultsModel = LoginUserDefaultsModel()
+//    loginUserDefaultsModel.saveUserInfo(false)
+    guard let userInfo = loginUserDefaultsModel.loadUserLoginInfo() else { return }
+    // 원하는 뷰 컨트롤러 파일의 이름을 작성.
+    window?.rootViewController = userInfo ? TabBarMainViewController() : LoginViewController()
     window?.makeKeyAndVisible()
   }
 
