@@ -17,6 +17,12 @@
 		0E7660A02CB905A300311B46 /* SavedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76609F2CB905A300311B46 /* SavedModel.swift */; };
 		0E90995A2CE22E1000AC4D96 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099592CE22E1000AC4D96 /* ItemDetailView.swift */; };
 		0E90995C2CE22E1C00AC4D96 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E90995B2CE22E1C00AC4D96 /* ItemDetailViewController.swift */; };
+		0E9099622CE6D1F600AC4D96 /* PurchaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099612CE6D1F600AC4D96 /* PurchaseButton.swift */; };
+		0E9099652CE6D2A300AC4D96 /* PurchaseButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099642CE6D2A300AC4D96 /* PurchaseButtonProtocol.swift */; };
+		0E9099682CE6D6BD00AC4D96 /* PurchaseButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099672CE6D6BD00AC4D96 /* PurchaseButtonType.swift */; };
+		0E90996B2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E90996A2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift */; };
+		0E9099712CE6DE0900AC4D96 /* ItemDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099702CE6DE0900AC4D96 /* ItemDetailModel.swift */; };
+		0E9099732CE6E37200AC4D96 /* DividedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9099722CE6E37200AC4D96 /* DividedLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +35,12 @@
 		0E76609F2CB905A300311B46 /* SavedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedModel.swift; sourceTree = "<group>"; };
 		0E9099592CE22E1000AC4D96 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		0E90995B2CE22E1C00AC4D96 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		0E9099612CE6D1F600AC4D96 /* PurchaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseButton.swift; sourceTree = "<group>"; };
+		0E9099642CE6D2A300AC4D96 /* PurchaseButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseButtonProtocol.swift; sourceTree = "<group>"; };
+		0E9099672CE6D6BD00AC4D96 /* PurchaseButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseButtonType.swift; sourceTree = "<group>"; };
+		0E90996A2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E9099702CE6DE0900AC4D96 /* ItemDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailModel.swift; sourceTree = "<group>"; };
+		0E9099722CE6E37200AC4D96 /* DividedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedLineView.swift; sourceTree = "<group>"; };
 		0ECEFFBC2CA582B500CC793B /* KREAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KREAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,6 +80,11 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
+		0E90996E2CE6DD6D00AC4D96 /* Protocol */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +103,7 @@
 		0E765FC42CAFC0EF00311B46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E90996F2CE6DDE300AC4D96 /* ItemDetail */,
 				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
 				0E76609F2CB905A300311B46 /* SavedModel.swift */,
@@ -96,6 +114,7 @@
 		0E765FD62CAFC0EF00311B46 /* KREAM */ = {
 			isa = PBXGroup;
 			children = (
+				0E9099602CE6D1D900AC4D96 /* Component */,
 				0E765FE52CAFC10F00311B46 /* Screen */,
 				0E765FC42CAFC0EF00311B46 /* Models */,
 				0E765FD22CAFC0EF00311B46 /* AppDelegate.swift */,
@@ -124,10 +143,47 @@
 		0E9099582CE22D9100AC4D96 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				0E90996E2CE6DD6D00AC4D96 /* Protocol */,
+				0E9099692CE6DBEA00AC4D96 /* CollectionViewCell */,
 				0E9099592CE22E1000AC4D96 /* ItemDetailView.swift */,
 				0E90995B2CE22E1C00AC4D96 /* ItemDetailViewController.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		0E9099602CE6D1D900AC4D96 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				0E9099662CE6D2F500AC4D96 /* Button */,
+				0E9099722CE6E37200AC4D96 /* DividedLineView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		0E9099662CE6D2F500AC4D96 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				0E9099612CE6D1F600AC4D96 /* PurchaseButton.swift */,
+				0E9099642CE6D2A300AC4D96 /* PurchaseButtonProtocol.swift */,
+				0E9099672CE6D6BD00AC4D96 /* PurchaseButtonType.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		0E9099692CE6DBEA00AC4D96 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0E90996A2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		0E90996F2CE6DDE300AC4D96 /* ItemDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0E9099702CE6DE0900AC4D96 /* ItemDetailModel.swift */,
+			);
+			path = ItemDetail;
 			sourceTree = "<group>";
 		};
 		0ECEFFB32CA582B500CC793B = {
@@ -169,6 +225,7 @@
 				0E765FE92CAFC1C700311B46 /* Saved */,
 				0E765FEA2CAFC1DF00311B46 /* Search */,
 				0E765FEB2CAFC1E600311B46 /* Style */,
+				0E90996E2CE6DD6D00AC4D96 /* Protocol */,
 			);
 			name = KREAM;
 			packageProductDependencies = (
@@ -235,8 +292,14 @@
 			files = (
 				0E90995A2CE22E1000AC4D96 /* ItemDetailView.swift in Sources */,
 				0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */,
+				0E9099732CE6E37200AC4D96 /* DividedLineView.swift in Sources */,
+				0E9099622CE6D1F600AC4D96 /* PurchaseButton.swift in Sources */,
+				0E9099652CE6D2A300AC4D96 /* PurchaseButtonProtocol.swift in Sources */,
+				0E9099682CE6D6BD00AC4D96 /* PurchaseButtonType.swift in Sources */,
 				0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */,
 				0E90995C2CE22E1C00AC4D96 /* ItemDetailViewController.swift in Sources */,
+				0E90996B2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift in Sources */,
+				0E9099712CE6DE0900AC4D96 /* ItemDetailModel.swift in Sources */,
 				0E765FE12CAFC0EF00311B46 /* AppDelegate.swift in Sources */,
 				0E7660A02CB905A300311B46 /* SavedModel.swift in Sources */,
 				0E765FE22CAFC0EF00311B46 /* SceneDelegate.swift in Sources */,
