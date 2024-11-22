@@ -14,6 +14,9 @@ class ItemDetailViewController:
   ItemDetailViewControllerProtocol
 {
   private var recievedData: Displayable?
+  private lazy var selectidItemSizeFactory = DefaultViewControllerFactory {
+    SelectedItemSizeViewController()
+  }
   let data = ItemDetailData.purchaseData
   
   override func viewDidLoad() {
@@ -82,7 +85,10 @@ class ItemDetailViewController:
   }
   
   @objc private func buttonTapped() {
-    print("버튼 탭")
+    let newViewController = selectidItemSizeFactory.createViewController()
+    let navigationController = UINavigationController(rootViewController: newViewController)
+    navigationController.modalPresentationStyle = .popover
+    present(navigationController, animated: true, completion: nil)
   }
   
 }
