@@ -92,6 +92,11 @@
 			path = protocol;
 			sourceTree = "<group>";
 		};
+		0E90998E2CF05B9C00AC4D96 /* Core */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,7 @@
 		0E765FD62CAFC0EF00311B46 /* KREAM */ = {
 			isa = PBXGroup;
 			children = (
+				0E90998E2CF05B9C00AC4D96 /* Core */,
 				0E9099792CE79EDC00AC4D96 /* App */,
 				0E9099602CE6D1D900AC4D96 /* Component */,
 				0E765FE52CAFC10F00311B46 /* Screen */,
@@ -244,6 +250,7 @@
 				0E765FEB2CAFC1E600311B46 /* Style */,
 				0E9099792CE79EDC00AC4D96 /* App */,
 				0E90998B2CF0537100AC4D96 /* protocol */,
+				0E90998E2CF05B9C00AC4D96 /* Core */,
 			);
 			name = KREAM;
 			packageProductDependencies = (

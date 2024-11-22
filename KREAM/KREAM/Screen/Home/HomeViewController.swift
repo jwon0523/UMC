@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, ItemDataSendingDelegate {
   private let justDroppedCollectionViewHandler = JustDroppedCollectionViewHandler()
   private let snapshotCollectionViewHandler = SnapshotCollectionViewHandler()
   private var itemDetailViewController: ItemDetailViewControllerProtocol?
+  private let factory = DefaultViewControllerFactory { ItemDetailViewController() }
   
   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
@@ -35,7 +36,7 @@ class HomeViewController: UIViewController, ItemDataSendingDelegate {
   }
   
   func sendItemData(_ data: Displayable) {
-    let itemDetailVC = ItemDetailViewController()
+    let itemDetailVC = factory.createViewController()
     itemDetailVC.setData(data)
     itemDetailVC.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(itemDetailVC, animated: true)
