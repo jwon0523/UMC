@@ -8,9 +8,16 @@
 import Foundation
 import UIKit
 
-struct HomeModel {
+struct HomeModel: Displayable {
   let image: UIImage
-  let title: String
+  var title: String?
+  var subTitle: String? { nil }
+}
+
+extension HomeModel {
+  func configureView(_ view: ItemDetailView) {
+    // TODO: - 카테고리 컬렉션 셀 세부 뷰 작성시 해당 함수를 통해 UI 설정
+  }
 }
 
 extension HomeModel {

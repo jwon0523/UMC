@@ -8,9 +8,17 @@
 import Foundation
 import UIKit
 
-struct SnapshotCollectionModel {
+struct SnapshotCollectionModel: SnapshotDisplayable {
   let image: UIImage
+  var title: String? { nil }
+  var subTitle: String? { nil }
   let hashTag: String
+}
+
+extension SnapshotCollectionModel {
+  func configureView(_ view: ItemDetailView) {
+    // TODO: - 스냅샷 세부 뷰 작성시 해당 함수를 통해 UI 설정
+  }
 }
 
 extension SnapshotCollectionModel {

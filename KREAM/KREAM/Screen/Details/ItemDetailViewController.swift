@@ -10,10 +10,11 @@ import Then
 
 class ItemDetailViewController:
   UIViewController,
-  UIGestureRecognizerDelegate
-  {
+  UIGestureRecognizerDelegate,
+  ItemDetailViewControllerProtocol
+{
+  private var recievedData: Displayable?
   let data = ItemDetailData.purchaseData
-  var recievedData: JustDroppedCollectionModel? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,13 +37,13 @@ class ItemDetailViewController:
     $0.itemCollectionView.dataSource = self
   }
   
+  func setData(_ data: Displayable) {
+    self.recievedData = data
+  }
+  
   private func updateViewWithData() {
     if let recievedData = recievedData {
-      itemDetailView.itemImageView.image = recievedData.image
-      itemDetailView.priceTitleLabel.text = recievedData.priceStatus
-      itemDetailView.price = recievedData.price
-      itemDetailView.itemName.text = recievedData.title
-      itemDetailView.itemDescription.text = recievedData.subTitle
+      recievedData.configureView(itemDetailView)
     }
   }
   

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ItemDataSendingDelegate: AnyObject {
-  func sendItemData(_ data: JustDroppedCollectionModel)
+  func sendItemData(_ data: Displayable)
 }

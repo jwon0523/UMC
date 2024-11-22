@@ -8,12 +8,22 @@
 import Foundation
 import UIKit
 
-struct JustDroppedCollectionModel {
+struct JustDroppedCollectionModel: Displayable, Priced {
   let image: UIImage
-  let title: String
-  let subTitle: String
+  let title: String?
+  let subTitle: String?
   let price: String
   let priceStatus: String
+}
+
+extension JustDroppedCollectionModel {
+  func configureView(_ view: ItemDetailView) {
+    view.itemImageView.image = self.image
+    view.priceTitleLabel.text = self.priceStatus
+    view.price = self.price
+    view.itemName.text = self.title
+    view.itemDescription.text = self.subTitle
+  }
 }
 
 extension JustDroppedCollectionModel {
