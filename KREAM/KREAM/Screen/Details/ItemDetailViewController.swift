@@ -13,6 +13,7 @@ class ItemDetailViewController:
   UIGestureRecognizerDelegate,
   ItemDetailViewControllerProtocol
 {
+  weak var itemDataSendingDelegate: ItemDataSendingDelegate?
   private var recievedData: Displayable?
   private lazy var selectidItemSizeFactory = DefaultViewControllerFactory {
     SelectedItemSizeViewController()
@@ -87,6 +88,11 @@ class ItemDetailViewController:
   @objc private func buttonTapped() {
     let newViewController = selectidItemSizeFactory.createViewController()
     let navigationController = UINavigationController(rootViewController: newViewController)
+    newViewController.receiveData = ReceiveSelectedItemSizeData(
+      image: itemDetailView.itemImageView.image ?? UIImage(),
+      productName: itemDetailView.itemName.text ?? "Error",
+      prodcutDescription: itemDetailView.itemDescription.text ?? "Error"
+    )
     navigationController.modalPresentationStyle = .popover
     present(navigationController, animated: true, completion: nil)
   }

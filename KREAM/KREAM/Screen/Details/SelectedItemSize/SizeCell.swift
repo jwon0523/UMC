@@ -26,10 +26,14 @@ class SizeCell: UICollectionViewCell {
   // MARK: - Property
   
   /// 사이즈 속성을 나타내는 라벨, 피그마 값으로 넣어서 적용
-  private lazy var sizeLabel: UILabel = makeLabel(UIFont.systemFont(ofSize: 14, weight: .regular), color: .black)
+  private lazy var sizeLabel: UILabel = makeLabel(
+    UIFont.systemFont(ofSize: 14, weight: .regular), color: .black
+  )
   
   /// 가격 표시 라벨, 피그마 값으로 넣어서 적용
-  private lazy var priceLabel: UILabel = makeLabel(UIFont.systemFont(ofSize: 12, weight: .regular), color: .red)
+  private lazy var priceLabel: UILabel = makeLabel(
+    UIFont.systemFont(ofSize: 12, weight: .regular), color: .red
+  )
   
   // MARK: - Function
   
