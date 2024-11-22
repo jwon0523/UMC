@@ -7,8 +7,11 @@
 
 import UIKit
 
-class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
-  weak var parentViewController: UIViewController?
+class JustDroppedCollectionViewHandler:
+  NSObject,
+  UICollectionViewDataSource,
+  UICollectionViewDelegate {
+  weak var itemDataSendingDelegate: ItemDataSendingDelegate?
   
   func collectionView(
     _ collectionView: UICollectionView,
@@ -41,16 +44,9 @@ class JustDroppedCollectionViewHandler: NSObject, UICollectionViewDataSource, UI
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    let itemDetailVC = ItemDetailViewController()
     let list = JustDroppedCollectionModel.justDroppedCollectionData()
     let selectedItem = list[indexPath.row]
-    itemDetailVC.image = selectedItem.image
     
-    if let navigationController = parentViewController?.navigationController {
-      navigationController.pushViewController(itemDetailVC, animated: true)
-    } else {
-      let navController = UINavigationController(rootViewController: itemDetailVC)
-      parentViewController?.present(navController, animated: true)
-    }
+    itemDataSendingDelegate?.sendItemData(selectedItem)
   }
 }

@@ -8,10 +8,12 @@
 import UIKit
 import Then
 
-class ItemDetailViewController: UIViewController, UIGestureRecognizerDelegate {
-  
+class ItemDetailViewController:
+  UIViewController,
+  UIGestureRecognizerDelegate
+  {
   let data = ItemDetailData.purchaseData
-  var image: UIImage?
+  var recievedData: JustDroppedCollectionModel? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,9 +24,7 @@ class ItemDetailViewController: UIViewController, UIGestureRecognizerDelegate {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    if let image = image {
-      self.itemDetailView.itemImageView.image = image
-    }
+    self.updateViewWithData()
   }
   
   override func loadView() {
@@ -32,13 +32,18 @@ class ItemDetailViewController: UIViewController, UIGestureRecognizerDelegate {
   }
   
   private lazy var itemDetailView = ItemDetailView().then {
-    if let image = image {
-      $0.itemImageView.image = image
-    } else {
-      print("Image is nil")
-    }
     $0.itemCollectionView.delegate = self
     $0.itemCollectionView.dataSource = self
+  }
+  
+  private func updateViewWithData() {
+    if let recievedData = recievedData {
+      itemDetailView.itemImageView.image = recievedData.image
+      itemDetailView.priceTitleLabel.text = recievedData.priceStatus
+      itemDetailView.price = recievedData.price
+      itemDetailView.itemName.text = recievedData.title
+      itemDetailView.itemDescription.text = recievedData.subTitle
+    }
   }
   
   private func setupNavigationBar() {

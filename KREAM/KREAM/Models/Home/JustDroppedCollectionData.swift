@@ -35,9 +35,9 @@ extension JustDroppedCollectionModel {
       ),
       JustDroppedCollectionModel(
         image: .justDropped3,
-        title: "Human Made",
-        subTitle: "청키라이너 뉴욕양키스",
-        price: "139,000원",
+        title: "Matin Kim Logo Coating Jumper",
+        subTitle: "마뗑킴 로고 코팅 점퍼 블랙",
+        price: "228,000원",
         priceStatus: "즉시 구매가"
       ),
       JustDroppedCollectionModel(

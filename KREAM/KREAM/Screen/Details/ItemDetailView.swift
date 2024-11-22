@@ -10,6 +10,13 @@ import SnapKit
 import Then
 
 class ItemDetailView: UIView {
+  var price: String? {
+    didSet {
+      priceLabel.text = price
+      leftPurchaseBtn.priceLabel.text = price
+      rightSalesBtn.priceLabel.text = price
+    }
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -41,14 +48,14 @@ class ItemDetailView: UIView {
     return collection
   }()
   
-  private lazy var priceTitleLabel: UILabel = makeLabel(
+  lazy var priceTitleLabel: UILabel = makeLabel(
     "즉시 구매가",
     UIFont.systemFont(ofSize: 12, weight: .light),
     color: .black
   )
   
-  private lazy var priceLabel: UILabel = makeLabel(
-    "228,000원",
+  lazy var priceLabel: UILabel = makeLabel(
+    "",
     UIFont.systemFont(ofSize: 20, weight: .semibold),
     color: .black
   )
@@ -87,12 +94,10 @@ class ItemDetailView: UIView {
   }()
   
   public lazy var leftPurchaseBtn: PurchaseButton = makeBottomBtn(
-    price: "345,000",
     sub: "즉시 구매가",
     type: .purchase
   )
   public lazy var rightSalesBtn: PurchaseButton = makeBottomBtn(
-    price: "396,000",
     sub: "즉시 판매가",
     type: .sales
   )
@@ -105,12 +110,10 @@ class ItemDetailView: UIView {
 
 private extension ItemDetailView {
   func makeBottomBtn(
-    price: String,
     sub: String,
     type: PurchaseButtonType
   ) -> PurchaseButton {
     let btn = PurchaseButton(frame: .zero, btnType: type)
-    btn.priceLabel.text = price
     btn.subLabel.text = sub
     btn.isUserInteractionEnabled = true
     return btn

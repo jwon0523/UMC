@@ -8,11 +8,12 @@
 import UIKit
 import Then
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ItemDataSendingDelegate {
   private let homeView = HomeView()
   private let explorationCollectionViewHandler = ExplorationCollectionViewHandler()
   private let justDroppedCollectionViewHandler = JustDroppedCollectionViewHandler()
   private let snapshotCollectionViewHandler = SnapshotCollectionViewHandler()
+  private var itemDetailViewController: ItemDetailViewController? = nil
   
   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
@@ -33,6 +34,13 @@ class HomeViewController: UIViewController {
     setupDelegates()
   }
   
+  func sendItemData(_ data: JustDroppedCollectionModel) {
+    let itemDetailVC = ItemDetailViewController()
+    itemDetailVC.recievedData = data
+    itemDetailVC.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(itemDetailVC, animated: true)
+  }
+  
   private func setupDelegates() {
     homeView.explorationCollectionView.dataSource = explorationCollectionViewHandler
     homeView.justDroppedCollectionView.dataSource = justDroppedCollectionViewHandler
@@ -40,8 +48,7 @@ class HomeViewController: UIViewController {
     
     homeView.searchBarView.delegate = self
     homeView.justDroppedCollectionView.delegate = justDroppedCollectionViewHandler
-    // 핸들러에 parentViewController 전달
-    justDroppedCollectionViewHandler.parentViewController = self
+    justDroppedCollectionViewHandler.itemDataSendingDelegate = self
   }
   
   private func setupAction() {
