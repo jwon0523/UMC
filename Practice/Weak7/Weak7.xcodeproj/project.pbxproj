@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0E909A012CF21FDF00AC4D96 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E909A002CF21FDF00AC4D96 /* SnapKit */; };
+		0E909A212CF228D700AC4D96 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0E909A202CF228D700AC4D96 /* Secrets.xcconfig */; };
+		0E909A242CF22EB200AC4D96 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0E909A232CF22EB200AC4D96 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E9099D32CF21C1000AC4D96 /* Weak7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weak7.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E909A202CF228D700AC4D96 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -41,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E909A012CF21FDF00AC4D96 /* SnapKit in Frameworks */,
+				0E909A242CF22EB200AC4D96 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +56,7 @@
 			children = (
 				0E9099D52CF21C1000AC4D96 /* Weak7 */,
 				0E9099D42CF21C1000AC4D96 /* Products */,
+				0E909A202CF228D700AC4D96 /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +89,7 @@
 			name = Weak7;
 			packageProductDependencies = (
 				0E909A002CF21FDF00AC4D96 /* SnapKit */,
+				0E909A232CF22EB200AC4D96 /* Alamofire */,
 			);
 			productName = Weak7;
 			productReference = 0E9099D32CF21C1000AC4D96 /* Weak7.app */;
@@ -115,6 +121,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0E9099FF2CF21FDF00AC4D96 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0E909A222CF22EB200AC4D96 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0E9099D42CF21C1000AC4D96 /* Products */;
@@ -131,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E909A212CF228D700AC4D96 /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +157,7 @@
 /* Begin XCBuildConfiguration section */
 		0E9099E72CF21C1300AC4D96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E909A202CF228D700AC4D96 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -352,6 +361,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		0E909A222CF22EB200AC4D96 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -359,6 +376,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E9099FF2CF21FDF00AC4D96 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		0E909A232CF22EB200AC4D96 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E909A222CF22EB200AC4D96 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

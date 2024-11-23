@@ -1,10 +1,3 @@
-//
-//  APITestView.swift
-//  Weak7
-//
-//  Created by jaewon Lee on 11/23/24.
-//
-
 import UIKit
 import SnapKit
 
@@ -70,7 +63,8 @@ class APITestView: UIView {
     font: UIFont.systemFont(ofSize: 20, weight: .light)
   )
   public lazy var responseContentsTitle: UILabel = makeTitleLabel(
-    "이 부분에 Contents 값이 들어오도록 해주세요!", font: UIFont.systemFont(ofSize: 20, weight: .light)
+    "이 부분에 Contents 값이 들어오도록 해주세요!",
+    font: UIFont.systemFont(ofSize: 20, weight: .light)
   )
   
   /// 상단 텍스트 필드와 버튼 묶음 스택
@@ -90,6 +84,8 @@ class APITestView: UIView {
     label.textAlignment = .center
     label.textColor = UIColor.black
     label.numberOfLines = 0
+    label.text = text
+    label.font = font
     return label
   }
   
@@ -125,7 +121,6 @@ class APITestView: UIView {
     searchTextField.snp.makeConstraints {
       $0.width.equalTo(262)
     }
-    
     
     titleLabelStack.snp.makeConstraints {
       $0.top.equalTo(inputTextStack.snp.bottom).offset(91)
