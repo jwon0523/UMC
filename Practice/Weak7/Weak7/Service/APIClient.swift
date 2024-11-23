@@ -10,14 +10,26 @@ import Alamofire
 
 final class APIClient {
   static let shared = APIClient()
+  // 네트워크 요청의 응답을 비동기로 처리할 때 사용할 디스패치 큐 설정 가능
   private let session: Session
-  private let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String
   
   private init() {
-    guard let apiKey = apiKey else {
-        fatalError("API_KEY가 Info.plist에 설정되지 않았습니다.")
-    }
-    let interceptor = AuthorizationInterceptor(kakaoKey: apiKey)
+//    let initialCredential = Credential(
+//      accessToken: "initial_access_token",
+//      expiration: Date().addingTimeInterval(3600)
+//    )
+//    let authenticator = Authenticator()
+//    let interceptor = AuthenticationInterceptor(
+//      authenticator: authenticator,
+//      credential: initialCredential
+//    )
+//    let configuration = URLSessionConfiguration.default
+//    configuration.timeoutIntervalForRequest = 30 // 요청 타임아웃
+//    self.session = Session(
+//      configuration: configuration,
+//      interceptor: interceptor
+//    )
+    let interceptor = AuthorizationInterceptor()
     self.session = Session(interceptor: interceptor)
   }
   
@@ -31,7 +43,12 @@ final class APIClient {
       url,
       method: method,
       parameters: parameters
-    ).validate().responseDecodable(of: T.self) { response in
+    ).validate(
+      statusCode: 200..<300
+    ).validate(
+      contentType: ["application/json"]
+      // responseDecodable를 통해서 모델 T에 디코딩
+    ).responseDecodable(of: T.self) { response in
       switch response.result {
       case .success(let value):
         completion(.success(value))

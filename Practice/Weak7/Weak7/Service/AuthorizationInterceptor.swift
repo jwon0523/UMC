@@ -11,8 +11,11 @@ import Alamofire
 final class AuthorizationInterceptor: RequestInterceptor {
   private let kakaoKey: String
   
-  init(kakaoKey: String) {
-    self.kakaoKey = kakaoKey
+  init() {
+    guard let key = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
+      fatalError("API_KEY is not found")
+    }
+    self.kakaoKey = key
   }
   
   func adapt(
