@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,6 +24,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // 원하는 뷰 컨트롤러 파일의 이름을 작성.
     window?.rootViewController = userInfo ? TabBarMainViewController() : LoginViewController()
     window?.makeKeyAndVisible()
+  }
+  
+  // MARK: Logic to log in normally when you get back to the app
+  // MARK: Deployment target이 iOS 13 미만인 경우 AppDelegate에 추가
+  func application(
+    _ app: UIApplication,
+    open url: URL,
+    options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+  ) -> Bool {
+    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+      return AuthController.handleOpenUrl(url: url)
+    }
+    
+    return false
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
