@@ -30,6 +30,11 @@ class LoginViewController: UIViewController {
       action: #selector(loginBtnTapped),
       for: .touchUpInside
     )
+    view.kakaoLoginBtn.addTarget(
+      self,
+      action: #selector(kakaoLoginBtnTapped),
+      for: .touchUpInside
+    )
     return view
   }()
   
@@ -57,6 +62,11 @@ class LoginViewController: UIViewController {
         message: "아이디와 비밀번호가 일치하지 않습니다!"
       )
     }
+  }
+  
+  @objc func kakaoLoginBtnTapped() {
+    let kakaoApiManager = KakaoAPIManager()
+    kakaoApiManager.KakaoLogin()
   }
   
   private func showAlert(title: String, message: String) {
