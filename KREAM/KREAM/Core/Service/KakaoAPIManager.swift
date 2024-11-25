@@ -7,6 +7,20 @@
 
 import Foundation
 import KakaoSDKUser
+import KakaoSDKAuth
+import Alamofire
+
+struct User: Decodable {
+  let id: Int
+  let nickname: String?
+  
+  init(from dictionary: [String: Any]) {
+    self.id = dictionary["id"] as? Int ?? 0
+    let kakaoAccount = dictionary["kakao_account"] as? [String: Any]
+    let profile = kakaoAccount?["profile"] as? [String: Any]
+    self.nickname = profile?["nickname"] as? String
+  }
+}
 
 class KakaoAPIManager {
   static let shared = KakaoAPIManager()
@@ -32,12 +46,10 @@ class KakaoAPIManager {
         return
       }
       if let oauthToken = oauthToken {
-        KeychainService.shared.saveToken(
-          token: oauthToken.accessToken,
-          account: "kakao_access_token",
-          service: "com.example.kakaoLogin"
+        self.saveTokenAndFetchUserInfo(
+          oauthToken: oauthToken,
+          completion: completion
         )
-        completion(.success(oauthToken.accessToken))
       }
     }
   }
@@ -51,48 +63,103 @@ class KakaoAPIManager {
         return
       }
       if let oauthToken = oauthToken {
-        KeychainService.shared.saveToken(
-          token: oauthToken.accessToken,
-          account: "com.example.kakaoLogin",
-          service: "kakao_access_token"
-        )
+        self.saveTokenAndFetchUserInfo(oauthToken: oauthToken, completion: completion)
+      }
+    }
+  }
+  
+  private func saveTokenAndFetchUserInfo(
+    oauthToken: OAuthToken,
+    completion: @escaping (Result<String, Error>) -> Void
+  ) {
+    keychainService.saveToken(
+      token: oauthToken.accessToken,
+      account: "com.example.kakaoLogin",
+      service: "kakao_access_token"
+    )
+    
+    fetchUserInfo(accessToken: oauthToken.accessToken) { result in
+      switch result {
+      case .success:
         completion(.success(oauthToken.accessToken))
+      case .failure(let error):
+        completion(.failure(error))
       }
     }
   }
   
   // MARK: - 사용자 정보 가져오기
-  func fetchUserInfo() {
-    UserApi.shared.me {(user, error) in
-      if let error = error {
-        print("사용자 정보 가져오기 실패: \(error.localizedDescription)")
-        return
-      }
-      print("사용자 정보 가져오기 성공")
-      print("사용자 닉네임: \(user?.kakaoAccount?.profile?.nickname ?? "No nickname")")
-      print("사용자 계정: \(user?.kakaoAccount?.email ?? "No email")")
-    }
-  }
-  
-  func kakaoLogout() {
-    UserApi.shared.logout {(error) in
-      if let error = error {
-        print(error)
-      }
-      else {
-        print("logout() success.")
+  func fetchUserInfo(
+    accessToken: String,
+    completion: @escaping (Result<User, Error>) -> Void
+  ) {
+    let url = "https://kapi.kakao.com/v2/user/me"
+    let headers: HTTPHeaders = [
+      "Authorization" : "Bearer \(accessToken)"
+    ]
+    
+    AF.request(
+      url,
+      method: .get,
+      headers: headers
+    ).responseJSON { response in
+      switch response.result {
+      case .success(let data):
+        if let json = data as? [String: Any] {
+          print("사용자 정보: \(json)")
+          let user = User(from: json) // User 객체로 변환
+          print(user)
+          completion(.success(user)) // 성공 결과로 User 전달
+        } else {
+          completion(.failure(NSError(
+            domain: "KakaoAPI",
+            code: -1,
+            userInfo: [NSLocalizedDescriptionKey: "Invalid response format"]
+          )))
+        }
+      case .failure(let error):
+        completion(.failure(error))
       }
     }
     
-    // MARK: - 연결 끊기 및 토큰 삭제
-    func kakaoUnlink() {
-      UserApi.shared.unlink {(error) in
+    func kakaoLogout() {
+      UserApi.shared.logout {(error) in
         if let error = error {
           print(error)
         }
         else {
-          print("unlink() success.")
+          print("logout() success.")
         }
+      }
+      
+      // MARK: - 연결 끊기 및 토큰 삭제
+      func kakaoUnlink() {
+        UserApi.shared.unlink {(error) in
+          if let error = error {
+            print(error)
+          }
+          else {
+            print("unlink() success.")
+          }
+        }
+      }
+    }
+  }
+  
+  func validateToken(accessToken: String, completion: @escaping (Bool) -> Void) {
+    let url = "https://kapi.kakao.com/v1/user/access_token_info"
+    let headers: HTTPHeaders = [
+      "Authorization": "Bearer \(accessToken)"
+    ]
+    
+    AF.request(url, method: .get, headers: headers).responseJSON { response in
+      switch response.result {
+      case .success(let data):
+        print("토큰 유효성 확인 성공: \(data)")
+        completion(true)
+      case .failure(let error):
+        print("토큰 유효성 확인 실패: \(error.localizedDescription)")
+        completion(false)
       }
     }
   }
