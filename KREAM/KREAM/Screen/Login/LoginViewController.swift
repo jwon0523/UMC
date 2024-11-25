@@ -65,8 +65,19 @@ class LoginViewController: UIViewController {
   }
   
   @objc func kakaoLoginBtnTapped() {
-    let kakaoApiManager = KakaoAPIManager()
-    kakaoApiManager.KakaoLogin()
+    let kakaoApiManager = KakaoAPIManager.shared
+    kakaoApiManager.KakaoLogin { [weak self] result in
+      switch result {
+      case .success(let token):
+        print("카카오 로그인 성공: \(token)")
+        self?.showTabBarMainViewController()
+      case .failure(let error):
+        self?.showAlert(
+          title: "Error",
+          message: "카카오 로그인 실패: \(error.localizedDescription)"
+        )
+      }
+    }
   }
   
   private func showAlert(title: String, message: String) {

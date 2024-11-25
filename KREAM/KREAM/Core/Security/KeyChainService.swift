@@ -8,8 +8,8 @@
 import Foundation
 import Security
 
-class KeyChainService {
-  static let shared = KeyChainService()
+class KeychainService {
+  static let shared = KeychainService()
   
   private init() {}
   
