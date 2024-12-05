@@ -13,14 +13,18 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # 1. 저장소 코드 가져오기
+      # 1. 코드 체크아웃
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Xcode 빌드 및 테스트 실행
+      # 2. Xcode 16.1로 설정
+      - name: Set Xcode version
+        run: sudo xcode-select -switch /Applications/Xcode_16.1.app
+
+      # 3. Xcode 빌드 및 테스트 실행
       - name: Build and Test
         run: |
           xcodebuild clean build test \
-            -project ./KREAM/KREAM.xcodeproj \
+            -project UMC/KREAM/KREAM.xcodeproj \
             -scheme KREAM \
-            -destination "platform=iOS Simulator,name=iPhone 11,OS=16.0"
+            -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0"
