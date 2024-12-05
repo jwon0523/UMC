@@ -21,7 +21,15 @@ jobs:
       - name: Set Xcode version
         run: sudo xcode-select -switch /Applications/Xcode_16.1.app
 
-      # 3. Xcode 빌드 및 테스트 실행
+      # 3. *.xcodeproj 파일 존재하는지 확인
+      - name: List files
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "Files in current directory:"
+          ls -R
+
+      # 4. Xcode 빌드 및 테스트 실행
       - name: Build and Test
         run: |
           xcodebuild clean build test \
