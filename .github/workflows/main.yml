@@ -33,6 +33,6 @@ jobs:
       - name: Build and Test
         run: |
           xcodebuild clean build test \
-            -project UMC/KREAM/KREAM.xcodeproj \
+            -project ./KREAM/KREAM.xcodeproj \
             -scheme KREAM \
             -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0"
