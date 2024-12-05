@@ -1,0 +1,26 @@
+name: iOS CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+      # 1. 저장소 코드 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Xcode 빌드 및 테스트 실행
+      - name: Build and Test
+        run: |
+          xcodebuild clean build test \
+            -project KREAM.xcodeproj \
+            -scheme KREAM \
+            -destination "platform=iOS Simulator,name=iPhone 11,OS=16.0"
