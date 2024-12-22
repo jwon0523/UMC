@@ -18,7 +18,7 @@ class UserViewController: UIViewController {
     getUserInfo()
   }
   
-  func getUserInfo() {
+  private func getUserInfo() {
     provider.request(.getAllUsers) { result in
       switch result {
       case .success(let response):
@@ -32,5 +32,26 @@ class UserViewController: UIViewController {
         print("Network request error: \(error.localizedDescription)")
       }
     }
+  }
+  
+  private func postFile() {
+    guard let image = Image(named: "tempImage")?.pngData() else {
+      fatalError("Error: Invalid image")
+    }
+    
+    provider.request(.postFile(image: image)) { result in
+      switch result {
+      case .success(let response):
+        do {
+          let fileResponse = try response.map(FileResponseModel.self)
+          print("Successfully mapped response: \(fileResponse)")
+        } catch {
+          print("Mapping error: \(error.localizedDescription)")
+        }
+      case .failure(let error):
+        print("Network request error: \(error.localizedDescription)")
+      }
+    }
+    
   }
 }

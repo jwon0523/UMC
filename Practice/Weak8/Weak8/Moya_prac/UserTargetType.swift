@@ -10,6 +10,7 @@ import Moya
 
 enum UserTargetType {
   case getAllUsers
+  case postFile(image: Data)
 }
 
 extension UserTargetType: TargetType {
@@ -24,6 +25,8 @@ extension UserTargetType: TargetType {
     switch self {
     case .getAllUsers:
       return "/api/v1/users"
+    case .postFile:
+      return "api/v1/files/upload"
     }
   }
   
@@ -31,6 +34,8 @@ extension UserTargetType: TargetType {
     switch self {
     case .getAllUsers:
       return .get
+    case .postFile(image: let image):
+      return .post
     }
   }
   
@@ -38,11 +43,25 @@ extension UserTargetType: TargetType {
     switch self {
     case .getAllUsers:
       return .requestPlain // 요청 파라미터 없음
+    case .postFile(image: let image):
+      let formData = MultipartFormData(
+        provider: .data(image),
+        name: "file",
+        fileName: "jokeBear",
+        mimeType: "image/jpeg" // MIME: 데이터 종류와 형식을 알려주는 "라벨" 역할
+      )
+      
+      return .uploadMultipart([formData])
     }
   }
   
   var headers: [String : String]? {
-    return ["Content-Type": "application/json"]
+    switch self {
+    case .getAllUsers:
+      return ["Content-Type": "application/json"]
+    case .postFile:
+      return ["Content-Type": "multipart/form-data"]
+    }
   }
   
   
