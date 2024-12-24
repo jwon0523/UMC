@@ -30,10 +30,6 @@ class HomeViewController: UIViewController, ItemDataSendingDelegate {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     self.view = homeView
-    print(KeychainService.shared.loadToken(
-      account: "com.example.kakaoLogin",
-      service: "kakao_access_token"
-    ))
     setupAction()
     setupDelegates()
   }

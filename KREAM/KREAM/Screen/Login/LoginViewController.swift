@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
       where: { $0.id == loginId && $0.pwd == loginPwd }
     ) != nil {
 //      showAlert(title: "로그인 성공", message: "환영합니다!")
-      showTabBarMainViewController()
+      changeRootViewController()
       loginUserDefaultsModel.saveUserInfo(true)
     } else {
       showAlert(
@@ -65,17 +65,21 @@ class LoginViewController: UIViewController {
   }
   
   @objc func kakaoLoginBtnTapped() {
-    let kakaoApiManager = KakaoAPIManager.shared
-    kakaoApiManager.KakaoLogin { [weak self] result in
-      switch result {
-      case .success(let token):
-        print("카카오 로그인 성공: \(token)")
-        self?.showTabBarMainViewController()
-      case .failure(let error):
-        self?.showAlert(
-          title: "Error",
-          message: "카카오 로그인 실패: \(error.localizedDescription)"
+    Task {
+      do {
+        let accessToken = try await KakaoLoginManager.shared.fetchAccessToken()
+        let nickname = try await KakaoLoginManager.shared.fetchUserNickname(accessToken: accessToken)
+        let keychainCheck = KeychainManager.standard.saveSession(
+          UserKeychainInfo(
+            accessToken: accessToken,
+            nickname: nickname
+          ),
+          for: "kreamKeychain"
         )
+        print("키체인 저장 확인: \(keychainCheck)")
+        
+        changeRootViewController()
+        loginUserDefaultsModel.saveUserInfo(true)
       }
     }
   }
@@ -90,10 +94,28 @@ class LoginViewController: UIViewController {
     self.present(alert, animated: true)
   }
   
-  private func showTabBarMainViewController() {
-    lazy var tabBarMainViewController = TabBarMainViewController()
-    tabBarMainViewController.modalPresentationStyle = .fullScreen
-    present(tabBarMainViewController, animated: true)
+  /// 로그인 뷰 -> TabBarMainViewController로 전환
+  private func changeRootViewController() {
+    let rootVC = TabBarMainViewController()
+    
+    if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+       let sceneDelegate = window.delegate as? SceneDelegate,
+       let window = sceneDelegate.window {
+      window.rootViewController = rootVC
+      UIView.transition(
+        with: window,
+        duration: 0.3,
+        options: .transitionCrossDissolve,
+        animations: nil,
+        completion: nil
+      )
+    }
   }
+  
+//  private func showTabBarMainViewController() {
+//    lazy var tabBarMainViewController = TabBarMainViewController()
+//    tabBarMainViewController.modalPresentationStyle = .fullScreen
+//    present(tabBarMainViewController, animated: true)
+//  }
 }
 

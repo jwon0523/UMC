@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E0246352CCFD1EA0077203D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0E0246342CCFD1EA0077203D /* Then */; };
+		0E28C2202D1A49340073E19D /* UserKeychainInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E28C21F2D1A49340073E19D /* UserKeychainInfo.swift */; };
 		0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E765FC12CAEBA9000311B46 /* SnapKit */; };
 		0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FC32CAFC0EF00311B46 /* LoginModel.swift */; };
 		0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E28C21F2D1A49340073E19D /* UserKeychainInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeychainInfo.swift; sourceTree = "<group>"; };
 		0E765FC32CAFC0EF00311B46 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0E765FCC2CAFC0EF00311B46 /* TabBarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMainViewController.swift; sourceTree = "<group>"; };
 		0E765FD32CAFC0EF00311B46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
 				0E76609F2CB905A300311B46 /* SavedModel.swift */,
 				0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */,
+				0E28C21F2D1A49340073E19D /* UserKeychainInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				0E9099982CF083C400AC4D96 /* SelectedItemSizeView.swift in Sources */,
 				0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */,
 				0E9099732CE6E37200AC4D96 /* DividedLineView.swift in Sources */,
+				0E28C2202D1A49340073E19D /* UserKeychainInfo.swift in Sources */,
 				0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */,
 				0E90995C2CE22E1C00AC4D96 /* ItemDetailViewController.swift in Sources */,
 				0E90996B2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift in Sources */,

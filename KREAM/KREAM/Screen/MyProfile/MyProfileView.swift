@@ -48,7 +48,7 @@ class MyProfileView: UIView {
   
   let userNameLabel: UILabel = {
     let label = UILabel()
-    label.text = "Jae Won"
+    label.text = KeychainManager.standard.loadSession(for: "kreamKeychain")?.nickname
     label.font = .systemFont(ofSize: 16, weight: .medium)
     return label
   }()
