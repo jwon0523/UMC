@@ -29,8 +29,9 @@
 		0E909A9F2CF32DF200AC4D96 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 0E909A9E2CF32DF200AC4D96 /* KakaoSDKCert */; };
 		0E909AA12CF32DF200AC4D96 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0E909AA02CF32DF200AC4D96 /* KakaoSDKCertCore */; };
 		0E909AA32CF32DF200AC4D96 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 0E909AA22CF32DF200AC4D96 /* KakaoSDKCommon */; };
-		0E909AA52CF32E8200AC4D96 /* SecretKey.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0E909AA42CF32E8100AC4D96 /* SecretKey.xcconfig */; };
 		0E909AB22CF45E7E00AC4D96 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */; };
+		0ECC6A402D1ADA270054FE47 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECC6A3F2D1ADA270054FE47 /* Moya */; };
+		0ECC6A422D1ADB080054FE47 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A412D1ADB080054FE47 /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +61,9 @@
 		0E9099BC2CF08D3F00AC4D96 /* SizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCell.swift; sourceTree = "<group>"; };
 		0E9099BE2CF08D6800AC4D96 /* SizeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeModel.swift; sourceTree = "<group>"; };
 		0E9099C02CF08E7700AC4D96 /* CustomNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationTitleView.swift; sourceTree = "<group>"; };
-		0E909AA42CF32E8100AC4D96 /* SecretKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SecretKey.xcconfig; sourceTree = "<group>"; };
 		0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		0ECC6A332D1AD7930054FE47 /* SecretKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SecretKey.xcconfig; sourceTree = "<group>"; };
+		0ECC6A412D1ADB080054FE47 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		0ECEFFBC2CA582B500CC793B /* KREAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KREAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEB595E2D01B96700973F22 /* KREAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KREAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +124,11 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		0ECC6A3A2D1AD9840054FE47 /* Response */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Response;
+			sourceTree = "<group>";
+		};
 		0EEB595F2D01B96700973F22 /* KREAMUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KREAMUITests;
@@ -136,6 +143,7 @@
 			files = (
 				0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */,
 				0E909AA32CF32DF200AC4D96 /* KakaoSDKCommon in Frameworks */,
+				0ECC6A402D1ADA270054FE47 /* Moya in Frameworks */,
 				0E0246352CCFD1EA0077203D /* Then in Frameworks */,
 				0E909AA12CF32DF200AC4D96 /* KakaoSDKCertCore in Frameworks */,
 				0E909A9B2CF32DF200AC4D96 /* KakaoSDK in Frameworks */,
@@ -157,12 +165,14 @@
 		0E765FC42CAFC0EF00311B46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0ECC6A3A2D1AD9840054FE47 /* Response */,
 				0E90996F2CE6DDE300AC4D96 /* ItemDetail */,
 				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
 				0E76609F2CB905A300311B46 /* SavedModel.swift */,
 				0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */,
 				0E28C21F2D1A49340073E19D /* UserKeychainInfo.swift */,
+				0ECC6A412D1ADB080054FE47 /* SearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,7 +187,7 @@
 				0E765FC42CAFC0EF00311B46 /* Models */,
 				0E765FD32CAFC0EF00311B46 /* Assets.xcassets */,
 				0E765FD42CAFC0EF00311B46 /* Info.plist */,
-				0E909AA42CF32E8100AC4D96 /* SecretKey.xcconfig */,
+				0ECC6A332D1AD7930054FE47 /* SecretKey.xcconfig */,
 			);
 			path = KREAM;
 			sourceTree = "<group>";
@@ -246,11 +256,19 @@
 			path = SelectedItemSize;
 			sourceTree = "<group>";
 		};
+		0ECC6A3E2D1ADA270054FE47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0ECEFFB32CA582B500CC793B = {
 			isa = PBXGroup;
 			children = (
 				0E765FD62CAFC0EF00311B46 /* KREAM */,
 				0EEB595F2D01B96700973F22 /* KREAMUITests */,
+				0ECC6A3E2D1ADA270054FE47 /* Frameworks */,
 				0ECEFFBD2CA582B500CC793B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -291,6 +309,7 @@
 				0E90998E2CF05B9C00AC4D96 /* Core */,
 				0E9099A22CF085E400AC4D96 /* App */,
 				0E9099AB2CF08C0500AC4D96 /* Button */,
+				0ECC6A3A2D1AD9840054FE47 /* Response */,
 			);
 			name = KREAM;
 			packageProductDependencies = (
@@ -301,6 +320,7 @@
 				0E909A9E2CF32DF200AC4D96 /* KakaoSDKCert */,
 				0E909AA02CF32DF200AC4D96 /* KakaoSDKCertCore */,
 				0E909AA22CF32DF200AC4D96 /* KakaoSDKCommon */,
+				0ECC6A3F2D1ADA270054FE47 /* Moya */,
 			);
 			productName = KREAM;
 			productReference = 0ECEFFBC2CA582B500CC793B /* KREAM.app */;
@@ -337,7 +357,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					0ECEFFBB2CA582B500CC793B = {
 						CreatedOnToolsVersion = 16.0;
@@ -361,6 +381,7 @@
 				0E765FC02CAEBA9000311B46 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0E0246332CCFD1EA0077203D /* XCRemoteSwiftPackageReference "Then" */,
 				0E909A992CF32DF200AC4D96 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				0ECC6A3D2D1ADA0D0054FE47 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0ECEFFBD2CA582B500CC793B /* Products */;
@@ -378,7 +399,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E909AA52CF32E8200AC4D96 /* SecretKey.xcconfig in Resources */,
 				0E765FE32CAFC0EF00311B46 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +425,7 @@
 				0E765FD72CAFC0EF00311B46 /* LoginModel.swift in Sources */,
 				0E9099732CE6E37200AC4D96 /* DividedLineView.swift in Sources */,
 				0E28C2202D1A49340073E19D /* UserKeychainInfo.swift in Sources */,
+				0ECC6A422D1ADB080054FE47 /* SearchModel.swift in Sources */,
 				0E765FDE2CAFC0EF00311B46 /* TabBarMainViewController.swift in Sources */,
 				0E90995C2CE22E1C00AC4D96 /* ItemDetailViewController.swift in Sources */,
 				0E90996B2CE6DC0E00AC4D96 /* ItemDetailCollectionViewCell.swift in Sources */,
@@ -435,7 +456,7 @@
 /* Begin XCBuildConfiguration section */
 		0ECEFFD02CA582B700CC793B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E909AA42CF32E8100AC4D96 /* SecretKey.xcconfig */;
+			baseConfigurationReference = 0ECC6A332D1AD7930054FE47 /* SecretKey.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -490,7 +511,7 @@
 		};
 		0ECEFFD22CA582B700CC793B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E909AA42CF32E8100AC4D96 /* SecretKey.xcconfig */;
+			baseConfigurationReference = 0ECC6A332D1AD7930054FE47 /* SecretKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -701,6 +722,14 @@
 				kind = branch;
 			};
 		};
+		0ECC6A3D2D1ADA0D0054FE47 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -738,6 +767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E909A992CF32DF200AC4D96 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKCommon;
+		};
+		0ECC6A3F2D1ADA270054FE47 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ECC6A3D2D1ADA0D0054FE47 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

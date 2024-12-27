@@ -8,8 +8,10 @@
 import UIKit
 import Then
 
-class HomeViewController: UIViewController, ItemDataSendingDelegate {
-  private let homeView = HomeView()
+class HomeViewController:
+  UIViewController,
+  ItemDataSendingDelegate,
+  UISearchBarDelegate {
   private let explorationCollectionViewHandler = ExplorationCollectionViewHandler()
   private let justDroppedCollectionViewHandler = JustDroppedCollectionViewHandler()
   private let snapshotCollectionViewHandler = SnapshotCollectionViewHandler()
@@ -17,21 +19,46 @@ class HomeViewController: UIViewController, ItemDataSendingDelegate {
   private let factory = DefaultViewControllerFactory { ItemDetailViewController() }
   
   override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(
+      true,
+      animated: animated
+    )
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    super.viewWillDisappear(animated)
+    self.navigationController?.setNavigationBarHidden(
+      false,
+      animated: animated
+    )
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     self.view = homeView
-    setupAction()
-    setupDelegates()
+    self.setupAction()
+    self.setupDelegates()
+    self.homeView.searchBar.delegate = self
+  }
+  
+  private lazy var homeView: HomeView = {
+    let view = HomeView()
+    view.backgroundColor = .white
+    return view
+  }()
+  
+  private func navigateToSearchViewController() {
+    let searchViewController = SearchViewController()
+    navigationController?.pushViewController(
+      searchViewController,
+      animated: true
+    )
+  }
+  
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    navigateToSearchViewController()
   }
   
   func sendItemData(_ data: Displayable) {
@@ -45,8 +72,6 @@ class HomeViewController: UIViewController, ItemDataSendingDelegate {
     homeView.explorationCollectionView.dataSource = explorationCollectionViewHandler
     homeView.justDroppedCollectionView.dataSource = justDroppedCollectionViewHandler
     homeView.snapshotCollectionView.dataSource = snapshotCollectionViewHandler
-    
-    homeView.searchBarView.delegate = self
     homeView.justDroppedCollectionView.delegate = justDroppedCollectionViewHandler
     justDroppedCollectionViewHandler.itemDataSendingDelegate = self
   }
@@ -71,22 +96,5 @@ private extension HomeViewController {
       homeView.emptyLabel.isHidden = false
       break
     }
-  }
-}
-
-extension HomeViewController: UISearchBarDelegate {
-  // 검색어가 변경되었을 때 호출되는 메서드
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    print("Search text changed: \(searchText)")
-  }
-  
-  // 검색 버튼이 클릭되었을 때 호출되는 메서드
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    searchBar.resignFirstResponder() // 키보드 내림
-    let vc = UIViewController().then {
-      $0.view.backgroundColor = .green
-    }
-    searchBar.text = ""
-    navigationController?.pushViewController(vc, animated: true)
   }
 }

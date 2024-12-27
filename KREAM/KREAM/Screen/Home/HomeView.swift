@@ -34,10 +34,17 @@ class HomeView: UIView {
     $0.spacing = 15
   }
   
-  let searchBarView = UISearchBar().then {
-    $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
-    $0.searchBarStyle = .minimal
-  }
+  public lazy var searchBar: UISearchBar = {
+    let searchBar = UISearchBar()
+    searchBar.placeholder = "브랜드, 상품, 프로필, 태그 등"
+    searchBar.barTintColor = .white
+    searchBar.backgroundColor = .clear
+    searchBar.clipsToBounds = true
+    searchBar.layer.cornerRadius = 12
+    searchBar.backgroundImage = UIImage()
+    
+    return searchBar
+  }()
   
   let alertBellView = UIImageView().then {
     $0.image = UIImage(named: "alertBell")
@@ -185,7 +192,7 @@ private extension HomeView {
       $0.height.equalTo(40)
     }
     
-    headerSectionView.addArrangedSubview(searchBarView)
+    headerSectionView.addArrangedSubview(searchBar)
     headerSectionView.addArrangedSubview(alertBellView)
     
     alertBellView.snp.makeConstraints {

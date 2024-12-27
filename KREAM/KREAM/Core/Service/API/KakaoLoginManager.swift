@@ -10,11 +10,6 @@ import KakaoSDKUser
 import KakaoSDKAuth
 import Alamofire
 
-struct UserInfoResponse: Codable {
-  let id: Int
-  let properties: [String: String]?
-}
-
 /// 카카오톡 로그인을 담당하는 Manager 설정
 /// 기본적으로 카카오 로그인은 Main Actor에서만 실행되기 떄문에 MainActor 지정
 @MainActor
@@ -51,7 +46,11 @@ class KakaoLoginManager {
     ]
     
     return try await withCheckedThrowingContinuation { continuation in
-      AF.request(url, method: .get, headers: headers).responseDecodable(of: UserInfoResponse.self) { response in
+      AF.request(
+        url,
+        method: .get,
+        headers: headers
+      ).responseDecodable(of: UserInfoResponse.self) { response in
         switch response.result {
         case .success(let userInfo):
           if let nickname = userInfo.properties?["nickname"] {

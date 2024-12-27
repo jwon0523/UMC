@@ -9,17 +9,22 @@ import UIKit
 
 class SearchResultView: UIView {
   
+  // MARK: - Init
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     self.backgroundColor = .white
     
+    self.addSubview(scrollView)
+    scrollView.addSubview(stackView)
+    self.constraints()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  /// 검색 결과 데이터를 스택뷰에 넣어서 보이도록 함
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .vertical
@@ -28,6 +33,7 @@ class SearchResultView: UIView {
     return stackView
   }()
   
+  /// 검색 결과 데이터가 수만가지 나올 수 있기 때문에 스크롤뷰로 감싸서 스크롤해서 볼 수 있도록 한다
   private lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.showsVerticalScrollIndicator = true
@@ -36,8 +42,12 @@ class SearchResultView: UIView {
     return scrollView
   }()
   
+  /// 검색 결과로 받아온 데이터를 반복문으로 돌면서 스택뷰에 추가한다.
+  /// - Parameter results: 검색 결과 데이터 배열 값
   func updateResult(_ results: [String]) {
-    stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    stackView.arrangedSubviews.forEach {
+      $0.removeFromSuperview()
+    }
     
     for result in results {
       let label = createResultLabel(result)
@@ -45,6 +55,9 @@ class SearchResultView: UIView {
     }
   }
   
+  /// 검색 결과로 받아온 데이터의 값을 사용하는 Label을 생서해서 스택뷰에 추가한다
+  /// - Parameter text: 검색 결과로 받아온 값
+  /// - Returns: 검색 결과를 갖는 라벨
   private func createResultLabel(_ text: String) -> UILabel {
     let label = UILabel()
     label.text = text

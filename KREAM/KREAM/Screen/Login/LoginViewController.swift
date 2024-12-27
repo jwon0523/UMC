@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
       where: { $0.id == loginId && $0.pwd == loginPwd }
     ) != nil {
 //      showAlert(title: "로그인 성공", message: "환영합니다!")
-      changeRootViewController()
+      showTabBarMainViewController()
       loginUserDefaultsModel.saveUserInfo(true)
     } else {
       showAlert(
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         )
         print("키체인 저장 확인: \(keychainCheck)")
         
-        changeRootViewController()
+        showTabBarMainViewController()
         loginUserDefaultsModel.saveUserInfo(true)
       }
     }
@@ -95,27 +95,27 @@ class LoginViewController: UIViewController {
   }
   
   /// 로그인 뷰 -> TabBarMainViewController로 전환
-  private func changeRootViewController() {
-    let rootVC = TabBarMainViewController()
-    
-    if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-       let sceneDelegate = window.delegate as? SceneDelegate,
-       let window = sceneDelegate.window {
-      window.rootViewController = rootVC
-      UIView.transition(
-        with: window,
-        duration: 0.3,
-        options: .transitionCrossDissolve,
-        animations: nil,
-        completion: nil
-      )
-    }
-  }
-  
-//  private func showTabBarMainViewController() {
-//    lazy var tabBarMainViewController = TabBarMainViewController()
-//    tabBarMainViewController.modalPresentationStyle = .fullScreen
-//    present(tabBarMainViewController, animated: true)
+//  private func changeRootViewController() {
+//    let rootVC = TabBarMainViewController()
+//    
+//    if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//       let sceneDelegate = window.delegate as? SceneDelegate,
+//       let window = sceneDelegate.window {
+//      window.rootViewController = rootVC
+//      UIView.transition(
+//        with: window,
+//        duration: 0.3,
+//        options: .transitionCrossDissolve,
+//        animations: nil,
+//        completion: nil
+//      )
+//    }
 //  }
+  
+  private func showTabBarMainViewController() {
+    lazy var tabBarMainViewController = TabBarMainViewController()
+    tabBarMainViewController.modalPresentationStyle = .fullScreen
+    present(tabBarMainViewController, animated: true)
+  }
 }
 

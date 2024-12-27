@@ -56,7 +56,10 @@ class KeychainManager: @unchecked Sendable {
     SecItemDelete(query as CFDictionary)
   }
   
-  public func saveSession(_ session: UserKeychainInfo, for key: String) -> Bool {
+  public func saveSession(
+    _ session: UserKeychainInfo,
+    for key: String
+  ) -> Bool {
     // 객체나 구조체를 키체인에 저장할 때는 JSON 인코더를 사용해 Data로 변환 후 저장
     guard let data = try? JSONEncoder().encode(session) else { return false }
     return save(data, for: key)
@@ -64,7 +67,10 @@ class KeychainManager: @unchecked Sendable {
   
   public func loadSession(for key: String) -> UserKeychainInfo? {
     guard let data = load(key: key),
-          let session = try? JSONDecoder().decode(UserKeychainInfo.self, from: data) else  { return nil}
+          let session = try? JSONDecoder().decode(
+            UserKeychainInfo.self,
+            from: data
+          ) else  { return nil}
     return session
   }
   

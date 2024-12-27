@@ -11,9 +11,10 @@ import Moya
 class SearchManager {
   private let provider = MoyaProvider<SearchRouter>()
   
-  func fetchSearchResult(
+  func fetchSearchResults(
     query: String,
-    completion: @escaping (Result<SearchResponse, Error>) -> Void) {
+    completion: @escaping (Result<SearchResponse, Error>) -> Void
+  ) {
     provider.request(.search(query: query)) { result in
       switch result {
       case .success(let response):

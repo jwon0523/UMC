@@ -8,17 +8,16 @@
 import UIKit
 
 class SearchView: UIView {
-
+  
   var onSearchButtonClicked: ((String) -> Void)?
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     self.backgroundColor = .white
-    
-     changeCancelKorean()
-     addComponents()
-     constraints()
+    self.changeCancelKorean()
+    addComponents()
+    constraints()
   }
   
   required init?(coder: NSCoder) {
@@ -33,8 +32,8 @@ class SearchView: UIView {
   }()
   
   private func changeCancelKorean() {
-    if let cancelButton = searchBar.value(forKey: "cancleButton") as? UIButton {
-      cancelButton.setTitle("취소", for: .normal)
+    if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+        cancelButton.setTitle("취소", for: .normal)
     }
   }
   
@@ -91,8 +90,10 @@ class SearchView: UIView {
       
       button.addAction(
         UIAction { [weak self] _ in
+          // 옵서널 클로저 호출
           self?.onSearchButtonClicked?(keyword)
-        }, for: .touchUpInside
+        },
+        for: .touchUpInside
       )
       
       button.layer.masksToBounds = true
