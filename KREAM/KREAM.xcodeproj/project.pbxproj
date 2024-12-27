@@ -32,6 +32,11 @@
 		0E909AB22CF45E7E00AC4D96 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */; };
 		0ECC6A402D1ADA270054FE47 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECC6A3F2D1ADA270054FE47 /* Moya */; };
 		0ECC6A422D1ADB080054FE47 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A412D1ADB080054FE47 /* SearchModel.swift */; };
+		0ECC6A542D1E6CB50054FE47 /* HomeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A532D1E6CB50054FE47 /* HomeCellModel.swift */; };
+		0ECC6A5D2D1E6F0A0054FE47 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0ECC6A5C2D1E6F0A0054FE47 /* Kingfisher */; };
+		0ECC6A812D1EB2D70054FE47 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A7E2D1EB2D70054FE47 /* SearchResultView.swift */; };
+		0ECC6A822D1EB2D70054FE47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A7F2D1EB2D70054FE47 /* SearchView.swift */; };
+		0ECC6A832D1EB2D70054FE47 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC6A802D1EB2D70054FE47 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,16 +69,15 @@
 		0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		0ECC6A332D1AD7930054FE47 /* SecretKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SecretKey.xcconfig; sourceTree = "<group>"; };
 		0ECC6A412D1ADB080054FE47 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		0ECC6A532D1E6CB50054FE47 /* HomeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellModel.swift; sourceTree = "<group>"; };
+		0ECC6A7E2D1EB2D70054FE47 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		0ECC6A7F2D1EB2D70054FE47 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0ECC6A802D1EB2D70054FE47 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0ECEFFBC2CA582B500CC793B /* KREAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KREAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEB595E2D01B96700973F22 /* KREAMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KREAMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0E39C8DD2CDCE51C0075E86D /* Home */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Home;
-			sourceTree = "<group>";
-		};
 		0E765FE62CAFC12A00311B46 /* MyProfile */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MyProfile;
@@ -94,19 +98,9 @@
 			path = Saved;
 			sourceTree = "<group>";
 		};
-		0E765FEA2CAFC1DF00311B46 /* Search */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Search;
-			sourceTree = "<group>";
-		};
 		0E765FEB2CAFC1E600311B46 /* Style */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Style;
-			sourceTree = "<group>";
-		};
-		0E90998B2CF0537100AC4D96 /* protocol */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = protocol;
 			sourceTree = "<group>";
 		};
 		0E90998E2CF05B9C00AC4D96 /* Core */ = {
@@ -129,6 +123,16 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		0ECC6A4A2D1E661D0054FE47 /* Protocol */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0ECC6A592D1E6EDC0054FE47 /* Extension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		0EEB595F2D01B96700973F22 /* KREAMUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KREAMUITests;
@@ -144,6 +148,7 @@
 				0E765FC22CAEBA9000311B46 /* SnapKit in Frameworks */,
 				0E909AA32CF32DF200AC4D96 /* KakaoSDKCommon in Frameworks */,
 				0ECC6A402D1ADA270054FE47 /* Moya in Frameworks */,
+				0ECC6A5D2D1E6F0A0054FE47 /* Kingfisher in Frameworks */,
 				0E0246352CCFD1EA0077203D /* Then in Frameworks */,
 				0E909AA12CF32DF200AC4D96 /* KakaoSDKCertCore in Frameworks */,
 				0E909A9B2CF32DF200AC4D96 /* KakaoSDK in Frameworks */,
@@ -165,10 +170,11 @@
 		0E765FC42CAFC0EF00311B46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0ECC6A4A2D1E661D0054FE47 /* Protocol */,
 				0ECC6A3A2D1AD9840054FE47 /* Response */,
 				0E90996F2CE6DDE300AC4D96 /* ItemDetail */,
-				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FC32CAFC0EF00311B46 /* LoginModel.swift */,
+				0ECC6A532D1E6CB50054FE47 /* HomeCellModel.swift */,
 				0E76609F2CB905A300311B46 /* SavedModel.swift */,
 				0E909AB12CF45E7E00AC4D96 /* APIEndpoint.swift */,
 				0E28C21F2D1A49340073E19D /* UserKeychainInfo.swift */,
@@ -183,6 +189,7 @@
 				0E9099A22CF085E400AC4D96 /* App */,
 				0E90998E2CF05B9C00AC4D96 /* Core */,
 				0E9099602CE6D1D900AC4D96 /* Component */,
+				0ECC6A592D1E6EDC0054FE47 /* Extension */,
 				0E765FE52CAFC10F00311B46 /* Screen */,
 				0E765FC42CAFC0EF00311B46 /* Models */,
 				0E765FD32CAFC0EF00311B46 /* Assets.xcassets */,
@@ -199,8 +206,8 @@
 				0E9099582CE22D9100AC4D96 /* Details */,
 				0E765FE72CAFC14B00311B46 /* Login */,
 				0E765FE82CAFC1BF00311B46 /* Home */,
+				0ECC6A7D2D1EB2BC0054FE47 /* Search */,
 				0E765FEB2CAFC1E600311B46 /* Style */,
-				0E765FEA2CAFC1DF00311B46 /* Search */,
 				0E765FE92CAFC1C700311B46 /* Saved */,
 				0E765FE62CAFC12A00311B46 /* MyProfile */,
 			);
@@ -211,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				0E9099962CF0838D00AC4D96 /* SelectedItemSize */,
-				0E90998B2CF0537100AC4D96 /* protocol */,
 				0E9099692CE6DBEA00AC4D96 /* CollectionViewCell */,
 				0E9099592CE22E1000AC4D96 /* ItemDetailView.swift */,
 				0E90995B2CE22E1C00AC4D96 /* ItemDetailViewController.swift */,
@@ -263,6 +269,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0ECC6A7D2D1EB2BC0054FE47 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0ECC6A7E2D1EB2D70054FE47 /* SearchResultView.swift */,
+				0ECC6A7F2D1EB2D70054FE47 /* SearchView.swift */,
+				0ECC6A802D1EB2D70054FE47 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		0ECEFFB32CA582B500CC793B = {
 			isa = PBXGroup;
 			children = (
@@ -298,18 +314,17 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0E39C8DD2CDCE51C0075E86D /* Home */,
 				0E765FE62CAFC12A00311B46 /* MyProfile */,
 				0E765FE72CAFC14B00311B46 /* Login */,
 				0E765FE82CAFC1BF00311B46 /* Home */,
 				0E765FE92CAFC1C700311B46 /* Saved */,
-				0E765FEA2CAFC1DF00311B46 /* Search */,
 				0E765FEB2CAFC1E600311B46 /* Style */,
-				0E90998B2CF0537100AC4D96 /* protocol */,
 				0E90998E2CF05B9C00AC4D96 /* Core */,
 				0E9099A22CF085E400AC4D96 /* App */,
 				0E9099AB2CF08C0500AC4D96 /* Button */,
 				0ECC6A3A2D1AD9840054FE47 /* Response */,
+				0ECC6A4A2D1E661D0054FE47 /* Protocol */,
+				0ECC6A592D1E6EDC0054FE47 /* Extension */,
 			);
 			name = KREAM;
 			packageProductDependencies = (
@@ -321,6 +336,7 @@
 				0E909AA02CF32DF200AC4D96 /* KakaoSDKCertCore */,
 				0E909AA22CF32DF200AC4D96 /* KakaoSDKCommon */,
 				0ECC6A3F2D1ADA270054FE47 /* Moya */,
+				0ECC6A5C2D1E6F0A0054FE47 /* Kingfisher */,
 			);
 			productName = KREAM;
 			productReference = 0ECEFFBC2CA582B500CC793B /* KREAM.app */;
@@ -382,6 +398,7 @@
 				0E0246332CCFD1EA0077203D /* XCRemoteSwiftPackageReference "Then" */,
 				0E909A992CF32DF200AC4D96 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				0ECC6A3D2D1ADA0D0054FE47 /* XCRemoteSwiftPackageReference "Moya" */,
+				0ECC6A5B2D1E6F0A0054FE47 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0ECEFFBD2CA582B500CC793B /* Products */;
@@ -418,6 +435,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E90995A2CE22E1000AC4D96 /* ItemDetailView.swift in Sources */,
+				0ECC6A812D1EB2D70054FE47 /* SearchResultView.swift in Sources */,
+				0ECC6A822D1EB2D70054FE47 /* SearchView.swift in Sources */,
+				0ECC6A832D1EB2D70054FE47 /* SearchViewController.swift in Sources */,
 				0E9099BD2CF08D3F00AC4D96 /* SizeCell.swift in Sources */,
 				0E9099C12CF08E7700AC4D96 /* CustomNavigationTitleView.swift in Sources */,
 				0E90999A2CF083D200AC4D96 /* SelectedItemSizeViewController.swift in Sources */,
@@ -433,6 +453,7 @@
 				0E9099BF2CF08D6800AC4D96 /* SizeModel.swift in Sources */,
 				0E909AB22CF45E7E00AC4D96 /* APIEndpoint.swift in Sources */,
 				0E7660A02CB905A300311B46 /* SavedModel.swift in Sources */,
+				0ECC6A542D1E6CB50054FE47 /* HomeCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +751,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		0ECC6A5B2D1E6F0A0054FE47 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -772,6 +801,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0ECC6A3D2D1ADA0D0054FE47 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		0ECC6A5C2D1E6F0A0054FE47 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ECC6A5B2D1E6F0A0054FE47 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

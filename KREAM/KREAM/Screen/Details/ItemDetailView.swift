@@ -110,10 +110,12 @@ class ItemDetailView: UIView {
 
 private extension ItemDetailView {
   func makeBottomBtn(
+    price: String = "228,000",
     sub: String,
     type: PurchaseButtonType
   ) -> PurchaseButton {
     let btn = PurchaseButton(frame: .zero, btnType: type)
+    btn.priceLabel.text = price
     btn.subLabel.text = sub
     btn.isUserInteractionEnabled = true
     return btn

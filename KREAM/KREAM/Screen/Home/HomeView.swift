@@ -13,21 +13,63 @@ class HomeView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.setupViews()
+    self.addComponents()
+    self.constraints()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  let homeStackView = UIStackView().then {
-    $0.axis = .vertical
-    $0.spacing = 10
-  }
+  public lazy var homeCollectionView: UICollectionView = {
+    let layout = HomeCollectionLayout.createCompositionalLayout()
+    let collectionView = UICollectionView(
+      frame: self.bounds,
+      collectionViewLayout: layout
+    )
+    
+    collectionView.register(
+      AdBannerCell.self,
+      forCellWithReuseIdentifier: AdBannerCell.identifier
+    )
+    collectionView.register(
+      AdBannerCell.self,
+      forCellWithReuseIdentifier: AdBannerCell.identifier
+    )
+    collectionView.register(
+      RecommendationCell.self,
+      forCellWithReuseIdentifier: RecommendationCell.identifier
+    )
+    collectionView.register(
+      ProductGridCell.self,
+      forCellWithReuseIdentifier: ProductGridCell.identifier
+    )
+    collectionView.register(
+      UserStoryCell.self,
+      forCellWithReuseIdentifier: UserStoryCell.identifier
+    )
+    collectionView.register(
+      SectionSeparatorFooter.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+      withReuseIdentifier: SectionSeparatorFooter.identifier
+    )
+    /*
+     어느 섹션에 대해서는 헤더를 들고 있고, 공통적인 컴포넌트를 가지고 있습니다. 그래서 하나의 헤더만 등록하고 원하는 섹션에서 헤더를 사용할 수 있도록 지정합니다.
+     */
+    collectionView.register(
+      BaseCellHeader.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: BaseCellHeader.identifier
+    )
+    
+    collectionView.backgroundColor = .white
+    // TODO: refreshControl
+    
+    return collectionView
+  }()
   
-  let scrollView = UIScrollView().then {
-    $0.showsHorizontalScrollIndicator = false
-  }
+  /// 상단 헤더 뷰
+//  public lazy var homeHeaderView: HomeHeaderView = HomeHeaderView()
   
   let headerSectionView = UIStackView().then {
     $0.axis = .horizontal
@@ -50,141 +92,42 @@ class HomeView: UIView {
     $0.image = UIImage(named: "alertBell")
   }
   
-  let categorySegmentedControl = UISegmentedControl(
-    items: ["추천", "랭킹", "발매정보", "럭셔리", "남성", "여성"]
-  ).then {
-    let image = UIImage()
-    $0.setBackgroundImage(image, for: .normal, barMetrics: .default)
-    $0.setBackgroundImage(image, for: .selected, barMetrics: .default)
-    $0.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
-    $0.setDividerImage(
-      image,
-      forLeftSegmentState: .selected,
-      rightSegmentState: .normal,
-      barMetrics: .default
-    )
-    $0.selectedSegmentIndex = 0
-    // 글자 크기에 맞춰서 간격 조절
-    $0.apportionsSegmentWidthsByContent = true
-    
-    $0.setTitleTextAttributes(
-      [
-        NSAttributedString.Key.foregroundColor: UIColor.black,
-        //        .backgroundColor: UIColor.clear,
-        .font: UIFont.systemFont(ofSize: 16, weight: .light),
-        .paragraphStyle: {
-          let paragraphStyle = NSMutableParagraphStyle()
-          paragraphStyle.alignment = .center
-          return paragraphStyle
-        }()
-      ],
-      for: .normal
-    )
-    $0.setTitleTextAttributes(
-      [
-        NSAttributedString.Key.foregroundColor: UIColor.black,
-        //        .backgroundColor: UIColor.clear,
-        .font: UIFont.systemFont(ofSize: 16, weight: .bold),
-        .paragraphStyle: {
-          let paragraphStyle = NSMutableParagraphStyle()
-          paragraphStyle.alignment = .center
-          return paragraphStyle
-        }()
-      ],
-      for: .selected
-    )
+  public lazy var segmentControl: HomeSegmentControl = {
+    let items = ["추천", "랭킹", "발매정보", "럭셔리", "남성", "여성"]
+    let segmentControl = HomeSegmentControl(items: items)
+    segmentControl.selectedSegmentIndex = 0
+    return segmentControl
+  }()
+  
+  /// 컬렉션 뷰 상단에서 잡아당길 때 리프레시 버튼 생성
+  private lazy var refreshControl: UIRefreshControl = {
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
+    return refreshControl
+  }()
+  
+  // MARK: - Function
+  
+  /// 1.0초 동안 리프레시 버튼 재생
+  @objc private func pullRefresh() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+      self.refreshControl.endRefreshing()
+    })
   }
   
-  let featuredBanner = UIImageView().then {
-    $0.image = UIImage(named: "Banner")
-    $0.contentMode = .scaleToFill
-  }
+  // MARK: - Constaints & Add Function
   
-  let explorationCollectionView = UICollectionView(
-    frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout().then {
-      $0.estimatedItemSize = .init(width: 61, height: 81)
-      $0.minimumLineSpacing = 9
-    }
-  ).then {
-    $0.backgroundColor = .clear
-    $0.register(
-      HomeCollectionViewCell.self,
-      forCellWithReuseIdentifier: HomeCollectionViewCell.identifier
-    )
-    $0.isScrollEnabled = false // 스크롤 비활성화
-  }
-  
-  lazy var emptyLabel = UILabel().then {
-    $0.text = "No data"
-    $0.textColor = .lightGray
-    $0.font = .systemFont(ofSize: 16, weight: .light)
-    $0.isHidden = true
-  }
-  
-  lazy var titleLabel: (String) -> UILabel = { title in
-    return UILabel().then {
-      $0.font = .systemFont(ofSize: 16, weight: .bold)
-      $0.text = title
-    }
-  }
-  
-  lazy var subTitleLabel: (String) -> UILabel = { subTitle in
-    return UILabel().then {
-      $0.font = .systemFont(ofSize: 13, weight: .medium)
-      $0.textColor = .lightGray
-      $0.text = subTitle
-    }
-  }
-  
-  lazy var justDroppedCollectionView = UICollectionView(
-    frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout().then {
-      // 컬렉션 뷰의 크기 지정(동적 계산)
-      $0.itemSize = .init(width: 142, height: 237)
-      // 가로 간격
-      $0.minimumInteritemSpacing = 8
-      $0.scrollDirection = .horizontal
-    }
-  ).then {
-    $0.backgroundColor = .clear
-    $0.register(
-      JustDroppedCollectionViewCell.self,
-      forCellWithReuseIdentifier: JustDroppedCollectionViewCell.identifier
-    )
-    $0.showsHorizontalScrollIndicator = false
-  }
-  
-  lazy var snapshotCollectionView = UICollectionView(
-    frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout().then {
-      // 컬렉션 뷰의 크기 지정
-      $0.itemSize = .init(width: 124, height: 165)
-      // 가로 간격
-      $0.minimumInteritemSpacing = 8
-      $0.scrollDirection = .horizontal
-    }
-  ).then {
-    $0.backgroundColor = .clear
-    $0.register(
-      SnapshotCollectionViewCell.self,
-      forCellWithReuseIdentifier: SnapshotCollectionViewCell.identifier
-    )
-    $0.isPagingEnabled = true // 스크롤 부드럽게
-    $0.showsHorizontalScrollIndicator = false
-  }
-}
-
-private extension HomeView {
-  func setupViews() {
+  /// 컴포넌트 생성
+  private func addComponents() {
     [
       headerSectionView,
-      categorySegmentedControl,
-      scrollView,
-      emptyLabel
-    ].forEach {
-      self.addSubview($0)
-    }
+      segmentControl,
+      homeCollectionView
+    ].forEach{ self.addSubview($0) }
+  }
+  
+  /// 제약 조건 설정
+  private func constraints() {
     
     headerSectionView.snp.makeConstraints {
       $0.top.equalTo(safeAreaLayoutGuide).offset(6)
@@ -195,110 +138,15 @@ private extension HomeView {
     headerSectionView.addArrangedSubview(searchBar)
     headerSectionView.addArrangedSubview(alertBellView)
     
-    alertBellView.snp.makeConstraints {
-      $0.height.width.equalTo(24)
-      $0.verticalEdges.equalToSuperview().inset(8)
-    }
-    
-    categorySegmentedControl.snp.makeConstraints {
+    segmentControl.snp.makeConstraints {
       $0.top.equalTo(headerSectionView.snp.bottom).offset(16)
       $0.horizontalEdges.equalToSuperview().inset(24)
       $0.height.equalTo(27)
     }
     
-    scrollView.snp.makeConstraints {
-      $0.top.equalTo(categorySegmentedControl.snp.bottom)
-      $0.horizontalEdges.bottom.equalToSuperview()
-    }
-    
-    scrollView.addSubview(homeStackView)
-    homeStackView.snp.makeConstraints {
-      // edges: 가장자리(top, leading, trailing, bottom)을 한번에 설정
-      // scrollView의 모든 가장자리에 위치 지정
-      $0.edges.equalTo(scrollView.contentLayoutGuide) // 스크롤 컨텐츠 영역에 맞게 설정
-      $0.width.equalTo(scrollView.frameLayoutGuide) // 스크롤 뷰의 프레임과 동일한 너비
-    }
-    
-    emptyLabel.snp.makeConstraints {
-      $0.center.equalToSuperview()
-    }
-    
-    setupStackView()
-  }
-  
-  func setupStackView() {
-    [
-      featuredBanner,
-      explorationCollectionView
-    ].forEach {
-      homeStackView.addArrangedSubview($0)
-    }
-    
-    featuredBanner.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview()
-      $0.height.equalTo(336)
-    }
-    
-    explorationCollectionView.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview().inset(16)
-      // 컨텐츠의 크기와 컬렉션 뷰의 크기를 맞춤으로써 스크롤 기능x
-      // 컬렉션 뷰는 UIScrollView를 상속 받기 때문에 지정된 크기보다 초과될 경우 스크롤 됨.
-      $0.height.equalTo(182)
-    }
-    
-    justDroppedSection()
-    snapshotSection()
-  }
-  
-  func justDroppedSection() {
-    let justDroppedSectionTitle = titleLabel("Just Dropped")
-    let justDroppedSectionSubTitle = subTitleLabel("발매 상품")
-    
-    [
-      justDroppedSectionTitle,
-      justDroppedSectionSubTitle,
-      justDroppedCollectionView
-    ].forEach {
-      homeStackView.addArrangedSubview($0)
-    }
-    
-    justDroppedSectionTitle.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview().inset(16)
-    }
-    
-    justDroppedSectionSubTitle.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview().inset(16)
-    }
-    
-    justDroppedCollectionView.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview()
-      $0.height.equalTo(237)
-    }
-  }
-  
-  func snapshotSection() {
-    let snapshotSectionTitle = titleLabel("본격 한파대비! 연말 필수템 모음")
-    let snapshotSectionSubTitle = subTitleLabel("#해피홀리룩챌린지")
-    
-    [
-      snapshotSectionTitle,
-      snapshotSectionSubTitle,
-      snapshotCollectionView
-    ].forEach {
-      homeStackView.addArrangedSubview($0)
-    }
-    
-    snapshotSectionTitle.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview().inset(16)
-    }
-    
-    snapshotSectionSubTitle.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview().inset(16)
-    }
-    
-    snapshotCollectionView.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview()
-      $0.height.equalTo(165)
+    homeCollectionView.snp.makeConstraints {
+      $0.top.equalTo(segmentControl.snp.bottom).offset(0)
+      $0.left.right.bottom.equalToSuperview()
     }
   }
 }
