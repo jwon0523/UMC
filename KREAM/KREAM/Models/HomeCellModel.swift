@@ -43,9 +43,9 @@ final class HomeCellModel {
   static let userStoryData: [UserStoryModel] = [
     .init(imageView: "userCell1", userName: "@kakain^.^"),
     .init(imageView: "userCell2", userName: "@UMC-7th"),
-    .init(imageView: "userCell3", userName: "@thosan")
-//    .init(imageView: "userCell4", userName: "@londonHuman"),
-//    .init(imageView: "userCell5", userName: "@Faker")
+    .init(imageView: "userCell3", userName: "@thosan"),
+    .init(imageView: "userCell4", userName: "@londonHuman"),
+    .init(imageView: "userCell5", userName: "@Faker")
   ]
   
   /* 판매 상품 데이터, 3번째 섹션 데이터 */
@@ -76,33 +76,33 @@ final class HomeCellModel {
       subTitleText: "Human MASEW",
       priceText: "228,000원",
       priceSubText: "즉시 구매가"
+    ),
+    .init(
+      imageView: "GridCell4",
+      purchaseCnt: "거래 89.8만",
+      selectedTag: false,
+      titleText: "뉴발란스",
+      subTitleText: "그냥 어떤 물품 유명함..",
+      priceText: "2,000,000원",
+      priceSubText: "즉시 구매가"
+    ),
+    .init(
+      imageView: "GridCell5",
+      purchaseCnt: "거래 54.8만",
+      selectedTag: false,
+      titleText: "어딘가 브랜드",
+      subTitleText: "설명 뭐 넣을까요..!",
+      priceText: "421,991,000원",
+      priceSubText: "즉시 구매가"
+    ),
+    .init(
+      imageView: "GridCell6",
+      purchaseCnt: "거래 3.8만",
+      selectedTag: true,
+      titleText: "브랜드 또 모있지..",
+      subTitleText: "하하하하 그냥 안 쓸래요",
+      priceText: "1,000원", priceSubText: "즉시 구매가"
     )
-//    .init(
-//      imageView: "GridCell4",
-//      purchaseCnt: "거래 89.8만",
-//      selectedTag: false,
-//      titleText: "뉴발란스",
-//      subTitleText: "그냥 어떤 물품 유명함..",
-//      priceText: "2,000,000원",
-//      priceSubText: "즉시 구매가"
-//    ),
-//    .init(
-//      imageView: "GridCell5",
-//      purchaseCnt: "거래 54.8만",
-//      selectedTag: false,
-//      titleText: "어딘가 브랜드",
-//      subTitleText: "설명 뭐 넣을까요..!",
-//      priceText: "421,991,000원",
-//      priceSubText: "즉시 구매가"
-//    ),
-//    .init(
-//      imageView: "GridCell6",
-//      purchaseCnt: "거래 3.8만",
-//      selectedTag: true,
-//      titleText: "브랜드 또 모있지..",
-//      subTitleText: "하하하하 그냥 안 쓸래요",
-//      priceText: "1,000원", priceSubText: "즉시 구매가"
-//    )
   ]
   
   /* 추천 상품 뎅터, 2번째 섹션 데이터 */
