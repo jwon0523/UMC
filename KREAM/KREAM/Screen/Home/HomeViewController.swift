@@ -118,10 +118,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
   }
   
+  /// 컬렉션 뷰의 행 사이 간격 설정
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 8
   }
   
+  /// 같은 라인 내에서 아이템 간의 최소 간격 설정
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }
